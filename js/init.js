@@ -40,8 +40,33 @@ var getJSONData = function(url){
     });
 }
 
+var logeado = sessionStorage.getItem("visitado");
+/*PARTE DEL CODIGO OK DE CLASE
+if (logeado !=1) {
+  window.location.href="login.html";
+}*/
+/*
+var redireccionLogin = function(){
+  window.location.href = "login.html";
+}*/
+/*var redireccionHome = function(){
+  window.location.href = "index.html";
+  /*let miEmail = getElementsByClassName('emailUsuario');
+  localStorage.setItem('email', miEmail);*/
+//}
+/*function enviarFormulario(evento){
+  evento.preventDefault();
+  window.location.href = "index.html";
+  /*let miEmail = getElementsByClassName('emailUsuario');
+  localStorage.setItem('email', miEmail);*/
+//}
+
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
+  console.log(location.href);
+  if (!location.href.endsWith("login.html")&&(logeado !=1)) {
+    window.location.replace("login.html");
+  }
 });

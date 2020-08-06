@@ -33,17 +33,49 @@
       max-width: 330px;
       padding: 15px;
       margin: auto;
+      background-color: lightblue;
+      border-radius: 2%;
     }
+
+    .imagen-login{
+      width: 100%;
+    }
+
+    .titulo-login{
+      font-size: 25px;
+      padding-top: 10%;
+      padding-bottom: 10%;
+    }
+
   </style>
 </head>
 
 <body class="text-center">
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 1 (Fecha de entrega: 16/08/2020) -> Punto 3 y 4.</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3"></div>
+      <div class="col-lg-6 signin">
+        <form class="text-center" name="login" method="POST" action=""><!--onsubmit="enviarFormulario(evento)" -->
+          <!--Imagen de cabecera -->
+          <img src="img/login.png" class="imagen-login">
+          <!--Titulo del Login -->
+          <h2 class="titulo-login text-center">Por favor, inicia sesión</h2>
+          <!--Nombre de Usuario -->
+          <input type="email" id="defaultLoginFormEmail" class="form-control mb-4 emailUsuario" placeholder="Correo electrónico" name="email" maxlength="25" minlength="4" required autofocus>
+          <!--Contraseña de Usuario -->
+          <input id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Contraseña" type="password" name="clave" maxlength="25" minlength="4" required autofocus>
+          <!--Recordar usuario -->
+          <div class="custom-control custom-checkbox mb-4">
+            <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
+            <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
+          </div>
+          <!--Botón de Enviar -->
+          <button class="btn btn-info btn-block" type="submit" name="enviar" onclick="sessionStorage.setItem('visitado', '1'); location.href='index.html';">Enviar</button>
+          <!--Copyright -->
+          <p class="mt-4 text-muted">&copy;2020</p>
+        </form>
+      </div>
+      <div class="col-lg-3"></div>
     </div>
   </div>
 
