@@ -1,7 +1,7 @@
 var productsArray = [];
 /*No trabaja con el DOM hasta que la ejecuto así que la puedo poner afuera
 del add event listener pq no la estoy llamando antes de que cargue el DOM*/
-function showProductsList(array){
+function showproductsList(array){
     console.log(array);//para ver el array de objetos en la consola
     let htmlContentToAppend = "";
     for(let i = 0; i < array.length; i++){
@@ -24,9 +24,10 @@ function showProductsList(array){
         </div>
         `
 
-        document.getElementsByClassName("listado-productos").innerHTML = htmlContentToAppend;
+        document.getElementById("products-container").innerHTML = htmlContentToAppend;
     }
 }
+
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
@@ -36,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function(e){
         {
             productsArray = resultObj.data;
             //Muestro las categorías ordenadas
-            showProductsList(productsArray);
+            showproductsList(productsArray);
         }
     });
 });
