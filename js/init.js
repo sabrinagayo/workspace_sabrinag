@@ -40,7 +40,10 @@ var getJSONData = function(url){
     });
 }
 
-var logeado = sessionStorage.getItem("visitado");
+var logueado = sessionStorage.getItem("visitado");
+if (!window.location.href.endsWith('login.html') && sessionStorage.getItem('logueado') !== 'true') {
+  window.location.href = 'login.html'//redirigir a login.html
+}
 /*PARTE DEL CODIGO OK DE CLASE
 if (logeado !=1) {
   window.location.href="login.html";
@@ -65,8 +68,8 @@ var redireccionLogin = function(){
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
-  console.log(location.href);
+  /*console.log(location.href);
   if (!location.href.endsWith("login.html")&&(logeado !=1)) {
     window.location.replace("login.html");
-  }
+  }*/
 });

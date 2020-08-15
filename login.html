@@ -55,22 +55,24 @@
     <div class="row">
       <div class="col-lg-3"></div>
       <div class="col-lg-6 signin">
-        <form class="text-center" name="login" method="POST" action=""><!--onsubmit="enviarFormulario(evento)" -->
+        <form class="text-center" id="miFormulario" name="login" method="POST" action=""><!--onsubmit="enviarFormulario(evento)" -->
           <!--Imagen de cabecera -->
           <img src="img/login.png" class="imagen-login">
           <!--Titulo del Login -->
           <h2 class="titulo-login text-center">Por favor, inicia sesión</h2>
           <!--Nombre de Usuario -->
-          <input type="email" id="defaultLoginFormEmail" class="form-control mb-4 emailUsuario" placeholder="Correo electrónico" name="email" maxlength="25" minlength="4" required autofocus>
+          <input type="text" id="nombreUsuario" class="form-control mb-4 emailUsuario" placeholder="Nombre usuario" name="nombreUsuario" maxlength="25" minlength="4" required autofocus>
           <!--Contraseña de Usuario -->
-          <input id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Contraseña" type="password" name="clave" maxlength="25" minlength="4" required autofocus>
+          <input id="claveUsuario" class="form-control mb-4" placeholder="Contraseña" type="password" name="clave" maxlength="25" minlength="4" required autofocus>
           <!--Recordar usuario -->
           <div class="custom-control custom-checkbox mb-4">
             <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
             <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
           </div>
-          <!--Botón de Enviar -->
+          <!--Botón de Enviar
           <button class="btn btn-info btn-block" type="submit" name="enviar" onclick="sessionStorage.setItem('visitado', '1'); location.href='index.html';">Enviar</button>
+          -->
+          <button class="btn btn-info btn-block" type="submit" name="enviar">Enviar</button>
           <!--Copyright -->
           <p class="mt-4 text-muted">&copy;2020</p>
         </form>
