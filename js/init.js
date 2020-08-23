@@ -40,36 +40,23 @@ var getJSONData = function(url){
     });
 }
 
-var logueado = sessionStorage.getItem("visitado");
-if (!window.location.href.endsWith('login.html') && sessionStorage.getItem('logueado') !== 'true') {
-  window.location.href = 'login.html'//redirigir a login.html
+var pintarNombreUsuario = function(){
+  var nombreUsuario = localStorage.getItem('nombreUsuario');
+  console.log(nombreUsuario);
+  document.getElementById("navegador").innerHTML += `<span class="py-2 d-none d-md-inline-block" id="pintarNombreUsuario">` + nombreUsuario + `</span>`;
 }
-/*PARTE DEL CODIGO OK DE CLASE
-if (logeado !=1) {
-  window.location.href="login.html";
-}*/
-/*
-var redireccionLogin = function(){
-  window.location.href = "login.html";
-}*/
-/*var redireccionHome = function(){
-  window.location.href = "index.html";
-  /*let miEmail = getElementsByClassName('emailUsuario');
-  localStorage.setItem('email', miEmail);*/
-//}
-/*function enviarFormulario(evento){
-  evento.preventDefault();
-  window.location.href = "index.html";
-  /*let miEmail = getElementsByClassName('emailUsuario');
-  localStorage.setItem('email', miEmail);*/
-//}
+
+var logueado = sessionStorage.getItem('logueado');//si el usuario no está logeado redirigir a login.html
+if (!window.location.href.endsWith('login.html') && sessionStorage.getItem('logueado') !== 'true') {//Si no está en el login y no se ha logeado
+  window.location.href = 'login.html'//redirigir a login.html
+}else{//si está logueado llama al nombre del usuario y lo pinta en el NAV
+  pintarNombreUsuario();  
+}
+
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
-  /*console.log(location.href);
-  if (!location.href.endsWith("login.html")&&(logeado !=1)) {
-    window.location.replace("login.html");
-  }*/
+
 });

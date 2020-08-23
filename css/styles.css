@@ -44,7 +44,11 @@
 .jumbotron .lead{
   font-size: 38px;
 }
-
+/*STYLE AÑADIDO*/
+#pintarNombreUsuario {
+  color: white;
+}
+/*STYLE AÑADIDO*/
 footer {
   padding-top: 3rem;
   padding-bottom: 3rem;

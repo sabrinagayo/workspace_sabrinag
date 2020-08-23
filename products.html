@@ -15,7 +15,7 @@
   </head>
   <body>
     <nav class="site-header sticky-top py-1 bg-dark">
-      <div class="container d-flex flex-column flex-md-row justify-content-between">
+      <div class="container d-flex flex-column flex-md-row justify-content-between"  id="navegador">
         <a class="py-2 d-none d-md-inline-block" href="index.html">Inicio</a>
         <a class="py-2 d-none d-md-inline-block" href="categories.html">Categorías</a>
         <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
@@ -23,8 +23,47 @@
         <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
       </div>
     </nav>
-    <div class="container p-5" id="products-container">
-
+    <div class="container p-5">
+      <!--Botones de filtro -->
+      <div class="row">
+          <div class="col text-right">
+              <div class="btn-group btn-group-toggle mb-4" data-toggle="buttons">
+                  <label class="btn btn-light active" id="sortAsc" >
+                      <input type="radio" name="options" autocomplete="off" checked>A-Z
+                  </label>
+                  <label class="btn btn-light" id="sortDesc" >
+                      <input type="radio" name="options" autocomplete="off">Z-A
+                  </label>
+                  <label class="btn btn-light" id="sortByCount" >
+                      <input type="radio" name="options" autocomplete="off"><i class="fas fa-sort-amount-down mr-1"></i>Cant.
+                  </label>
+              </div>
+          </div>
+      </div>
+      <div class="row justify-content-end">
+        <div class="col-md-6"></div>
+          <div class="col-md-6 col-sm-12 mb-1 container">
+            <div class="row container p-0 m-0">
+              <div class="col">
+                <p class="font-weight-normal text-right my-2">Cant.</p>
+              </div>
+              <div class="col">
+                <input class="form-control" type="number" placeholder="min." id="rangeFilterCountMin">
+              </div>
+              <div class="col">
+                <input class="form-control" type="number" placeholder="máx." id="rangeFilterCountMax">
+              </div>
+              <div class="col-3 p-0">
+                <div class="btn-group" role="group">
+                  <button class="btn btn-light btn-block" id="rangeFilterCount">Filtrar</button>
+                  <button class="btn btn-link btn-sm" id="clearRangeFilter">Limpiar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+      </div>
+    <!--listado de productos js: -->
+      <div class="row" id="products-container"></div>
     </div>
     <footer class="text-muted bg-light">
       <div class="container">
