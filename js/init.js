@@ -43,7 +43,17 @@ var getJSONData = function(url){
 var pintarNombreUsuario = function(){
   var nombreUsuario = localStorage.getItem('nombreUsuario');
   console.log(nombreUsuario);
-  document.getElementById("navegador").innerHTML += `<span class="py-2 d-none d-md-inline-block" id="pintarNombreUsuario">` + nombreUsuario + `</span>`;
+  document.getElementById("navegador").innerHTML += 
+  `
+  <button class="btn dropdown-toggle btn-outline-secondary mr-4 text-white" type="button" data-toggle="dropdown"
+    aria-haspopup="true" aria-expanded="false" >` + nombreUsuario + `</button>
+
+  <div class="dropdown-menu">
+    <a class="dropdown-item" href="my-profile.html">Mi perfil</a>
+    <div class="dropdown-divider"></div>
+    <a class="dropdown-item" href="#">Cerrar Sesión</a>
+  </div>
+  `;
 }
 
 var logueado = sessionStorage.getItem('logueado');//si el usuario no está logeado redirigir a login.html
