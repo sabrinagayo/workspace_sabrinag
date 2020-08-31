@@ -114,6 +114,16 @@ footer p {
 .lds-ring div:nth-child(3) {
   animation-delay: -0.15s;
 }
+/*CSS PERSONALIZADO*/
+.input-group.md-form.form-sm.form-2 input {
+  border: 1px solid #bdbdbd;
+  border-top-left-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+}
+.fas .fa-search .text-grey{
+  color: #343A40;
+}
+/*CSS PERSONALIZADO*/
 @keyframes lds-ring {
   0% {
     transform: rotate(0deg);

@@ -45,7 +45,7 @@ var pintarNombreUsuario = function(){
   console.log(nombreUsuario);
   document.getElementById("navegador").innerHTML += 
   `
-  <button class="btn dropdown-toggle btn-outline-secondary mr-4 text-white" type="button" data-toggle="dropdown"
+  <button class="btn dropdown-toggle btn-outline-secondary text-white" type="button" data-toggle="dropdown"
     aria-haspopup="true" aria-expanded="false" >` + nombreUsuario + `</button>
 
   <div class="dropdown-menu">

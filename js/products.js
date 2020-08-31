@@ -2,16 +2,17 @@ const ORDER_ASC_BY_NAME = "AZ";
 const ORDER_DESC_BY_SOLD_COUNT = "Relevancia";
 const ORDER_ASC_BY_PROD_COST = "Precio.Asc";
 const ORDER_DESC_BY_PROD_COST = "Precio.Desc";
+const search = document.querySelector('#search');//Constantes para el search
+const resultadoBusqueda = document.getElementById("products-container");//Constantes para el search
 var currentProductsArray = [];
 var currentSortCriteria = undefined;
 var minCost = undefined;
 var maxCost = undefined;
 var minCount = undefined;
 var maxCount = undefined;
-
 /*No trabaja con el DOM hasta que la ejecuto así que la puedo poner afuera
 del add event listener pq no la estoy llamando antes de que cargue el DOM*/
-function sortProducts(criteria, array){
+var sortProducts = function(criteria, array){
     let result = [];
     if (criteria === ORDER_ASC_BY_NAME)
     {
@@ -52,38 +53,34 @@ function sortProducts(criteria, array){
     return result;
 }
 
-function showProductsList(){
+var showProductsList = function(){
     let htmlContentToAppend = "";
     for(let i = 0; i < currentProductsArray.length; i++){
         let product = currentProductsArray[i];
 
         if (((minCost == undefined) || (minCost != undefined && parseInt(product.cost) >= minCost)) &&
-            ((maxCost == undefined) || (maxCost != undefined && parseInt(product.cost) <= maxCost)) &&
-            ((minCount == undefined) || (minCount != undefined && parseInt(product.soldCount) >= minCount)) &&
-            ((maxCount == undefined) || (maxCount != undefined && parseInt(product.soldCount) <= maxCount))){
+            ((maxCost == undefined) || (maxCost != undefined && parseInt(product.cost) <= maxCost))){
 
         htmlContentToAppend += `
-        <div class="list-group-item list-group-item-action">
-            <div class="row">
-                <div class="col-3">
-                    <img src="` + product.imgSrc + `" alt="` + product.description + `" class="img-thumbnail">
+            <div class="row list-group-item-action mt-4 border-light rounded">
+                <div class="col-3 pl-0">
+                    <img src="` + product.imgSrc + `" alt="` + product.description + `" class="img-fluid rounded">
                 </div>
                 <div class="col">
-                    <div class="d-flex w-100 justify-content-between">
+                    <div class="d-flex w-100 justify-content-between pt-2">
                         <h4 class="mb-1">`+ product.name +`</h4>
                         <small class="text-muted">` + product.cost + ` USD</small>
                     </div>
                     <div>`+ product.description +`</div>
                 </div>
             </div>
-        </div>
         `
         }
         document.getElementById("products-container").innerHTML = htmlContentToAppend;
     }
 }
 
-function sortAndShowProducts(sortCriteria, productsArray){
+var sortAndShowProducts = function(sortCriteria, productsArray){
     currentSortCriteria = sortCriteria;
 
     if(productsArray != undefined){
@@ -95,6 +92,39 @@ function sortAndShowProducts(sortCriteria, productsArray){
     //Muestro las categorías ordenadas
     showProductsList();
 }
+
+/*SEARCH*/
+
+
+var searchProducts = function(){
+
+    var textoBusqueda = search.value.toLowerCase();
+    resultadoBusqueda.innerHTML = '';
+
+    for(let product of currentProductsArray){
+        let name = product.name.toLowerCase();
+        let description = product.description.toLowerCase();
+        if(name.indexOf(textoBusqueda)!== -1 || description.indexOf(textoBusqueda) !== -1){
+            
+            resultadoBusqueda.innerHTML += `
+            <div class="row list-group-item-action mt-4 border-light rounded">
+                <div class="col-3 pl-0">
+                    <img src="` + product.imgSrc + `" alt="` + product.description + `" class="img-fluid rounded">
+                </div>
+                <div class="col">
+                    <div class="d-flex w-100 justify-content-between pt-2">
+                        <h4 class="mb-1">`+ product.name +`</h4>
+                        <small class="text-muted">` + product.cost + ` USD</small>
+                    </div>
+                    <div>`+ product.description +`</div>
+                </div>
+            </div>
+        `
+        }
+    }
+}
+/*SEARCH*/
+
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
@@ -150,4 +180,6 @@ document.addEventListener("DOMContentLoaded", function(e){
 
         showProductsList();
     });
+    //addEventListener del Search
+    search.addEventListener('keyup',searchProducts);
 });

@@ -26,19 +26,30 @@
     <div class="container p-5">
       <!--Botones de filtro -->
       <div class="row">
-          <div class="col text-right">
-              <div class="btn-group btn-group-toggle mb-4" data-toggle="buttons">
-                  <label class="btn btn-light" id="sortByRelevance" >
-                      <input type="radio" name="options" autocomplete="off">Relevancia
-                  </label>
-                  <label class="btn btn-light" id="sortByCostAsc" >
-                      <input type="radio" name="options" autocomplete="off"><i class="fas fa-sort-amount-up mr-1"></i>Precio Asc.
-                  </label>
-                  <label class="btn btn-light" id="sortByCostDesc" >
-                      <input type="radio" name="options" autocomplete="off"><i class="fas fa-sort-amount-down mr-1"></i>Precio Desc.
-                  </label>
-              </div>
+        <!--BUSCADOR -->
+        <div class="col-md-6">
+          <div class="input-group md-form form-sm form-2">
+            <input class="form-control" type="text" placeholder="Buscar productos..." aria-label="Search" id="search" size="45">
+            <div class="input-group-append">
+              <span class="input-group-text" id="basic-text1"><i class="fas fa-search text-grey"
+                  aria-hidden="true"></i></span>
+            </div>
           </div>
+        </div>
+        <!--FIN BUSCADOR -->
+        <div class="col-md-6 text-right">
+            <div class="btn-group btn-group-toggle mb-4" data-toggle="buttons">
+                <label class="btn btn-light" id="sortByRelevance" >
+                    <input type="radio" name="options" autocomplete="off">Relevancia
+                </label>
+                <label class="btn btn-light" id="sortByCostAsc" >
+                    <input type="radio" name="options" autocomplete="off"><i class="fas fa-sort-amount-up mr-1"></i>Precio Asc.
+                </label>
+                <label class="btn btn-light" id="sortByCostDesc" >
+                    <input type="radio" name="options" autocomplete="off"><i class="fas fa-sort-amount-down mr-1"></i>Precio Desc.
+                </label>
+            </div>
+        </div>
       </div>
       <div class="row justify-content-end">
         <div class="col-md-6"></div>
@@ -63,7 +74,7 @@
           </div>
       </div>
     <!--listado de productos js: -->
-      <div class="row" id="products-container"></div>
+      <div class="container" id="products-container"></div>
     </div>
     <footer class="text-muted bg-light">
       <div class="container">
