@@ -42,7 +42,6 @@ var getJSONData = function(url){
 
 var pintarNombreUsuario = function(){
   var nombreUsuario = localStorage.getItem('nombreUsuario');
-  console.log(nombreUsuario);
   document.getElementById("navegador").innerHTML += 
   `
   <button class="btn dropdown-toggle btn-outline-secondary text-white" type="button" data-toggle="dropdown"

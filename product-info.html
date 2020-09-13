@@ -26,12 +26,78 @@
     </div>
   </nav>
   <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 3 (Fecha de entrega: 13/09/2020) y Entrega 4 (Fecha de entrega: 20/09/2020).</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+    <div class="row">
+      <div class="col-lg-12" style="padding-bottom: 2%;">
+        <a href="products.html" style="color: black;">
+          <i class="fas fa-long-arrow-alt-left">Volver atrás</i>
+        </a>
+      </div>
     </div>
+    <div class="row">
+      <div class="col-lg-1" id="image-container">
+      </div>
+      <div class="col-lg-5">
+        <img src="img/prod1.jpg" style="width: 100%;">
+      </div>
+      <div class="col-lg-6 pl-4">
+        <h1 class="text-justify pb-1" id="nombreProducto"></h1>
+        <small class="text-justify pb-4" id="categoriaProducto"></small>
+        <p class="text-justify pb-3" id="descripcionProducto"></p>
+        <p class="text-center pb-3" id="precioProducto"></p>
+        <button class="btn btn-info btn-block" type="submit" name="comprar">Añadir al carrito</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6">
+        <h4 class="text-center p-4">Artículos relacionados</h4>
+      </div>
+      <div class="col-lg-6"></div>
+    </div>
+    <div class="row">
+      <div class="col-lg-3 container-autos">
+
+      </div>
+      <!--CARTA DE PRODUCTOS RELACIONADOS-->
+      <div class="col-lg-3">
+        
+        <div class="card">
+          <div class="view overlay">
+            <img class="card-img-top" src="img/prod3.jpg"
+              alt="Card image cap">
+            <a href="#!">
+              <div class="mask rgba-white-slight"></div>
+            </a>
+          </div>
+          <div class="card-body">
+            <h4 class="card-title">Nombre del Auto</h4>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
+              content.</p>
+            <a href="#" class="btn btn-primary">Ver más</a>
+          </div>
+        </div>
+        
+      </div>
+      <!--FIN DE CARTA DE PRODUCTOS RELACIONADOS 2-->
+      <div class="col-lg-6" id="valoracion-producto">
+        <form method="POST" action="" name="formularioComentario" onsubmit="nuevoComentario(event)">
+          <select name="dropdown" id="score" class="browser-default custom-select" required>
+            <option value="" disabled selected>Valoración</option>
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
+          <textarea class="form-control rounded-0" id="textoComentario" name="textoComentario" placeholder="Escriba su comentario" required></textarea>
+          <button type="submit">Publicar</button>
+        </form>
+        <div id="comentariosJson"></div>
+      </div>
+      <div class="col-lg-6"></div>
+      <div class="col-lg-6" id="nuevoComentario">
+        
+      </div>
   </div>
   <footer class="text-muted">
     <div class="container">
@@ -57,3 +123,21 @@
 </body>
 
 </html>
+<!--
+
+<div class="score_valoracion pb-3">
+  <span>Valoración:
+  <span class="fa fa-star checked"></span>
+  <span class="fa fa-star checked"></span>
+  <span class="fa fa-star checked"></span>
+  <span class="fa fa-star"></span>
+  <span class="fa fa-star"></span>
+  </span>    
+</div>
+<div class="valoracion text-justify">
+  <p class="descripcion_valoracion">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+  tempor incididunt ut labore</p>
+  <p class="usuario- valoracion">Usuario: Nombre usuario</p>
+  <small>Fecha de publicación: 00/00/0000</small>
+</div>
+ -->
