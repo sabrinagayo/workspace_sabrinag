@@ -41,18 +41,25 @@ var getJSONData = function(url){
 }
 
 var pintarNombreUsuario = function(){
-  var nombreUsuario = localStorage.getItem('nombreUsuario');
+  var nombreUsuario = sessionStorage.getItem('nombreUsuario');
   document.getElementById("navegador").innerHTML += 
   `
   <button class="btn dropdown-toggle btn-outline-secondary text-white" type="button" data-toggle="dropdown"
     aria-haspopup="true" aria-expanded="false" >` + nombreUsuario + `</button>
 
   <div class="dropdown-menu">
+    <a class="dropdown-item" href="cart.html">Mi carrito</a>
     <a class="dropdown-item" href="my-profile.html">Mi perfil</a>
     <div class="dropdown-divider"></div>
-    <a class="dropdown-item" href="#">Cerrar Sesión</a>
+    <a class="dropdown-item" href="#" onclick="logOut(event)">Cerrar Sesión</a>
   </div>
   `;
+}
+function logOut(event){
+  event.preventDefault();
+  sessionStorage.removeItem('logueado');
+  sessionStorage.removeItem('nombreUsuario');
+  window.location.href = 'login.html';
 }
 
 var logueado = sessionStorage.getItem('logueado');//si el usuario no está logeado redirigir a login.html
