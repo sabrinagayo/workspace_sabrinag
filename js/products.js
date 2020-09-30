@@ -3,7 +3,7 @@ const ORDER_DESC_BY_SOLD_COUNT = "Relevancia";
 const ORDER_ASC_BY_PROD_COST = "Precio.Asc";
 const ORDER_DESC_BY_PROD_COST = "Precio.Desc";
 const search = document.querySelector('#search');//Constantes para el search
-const resultadoBusqueda = document.getElementById("products-container");//Constantes para el search
+const searchResult = document.getElementById("products-container");//Constantes para el search
 var currentProductsArray = [];
 var currentSortCriteria = undefined;
 var minCost = undefined;
@@ -99,15 +99,15 @@ var sortAndShowProducts = function(sortCriteria, productsArray){
 
 var searchProducts = function(){
 
-    var textoBusqueda = search.value.toLowerCase();
-    resultadoBusqueda.innerHTML = '';
+    var searchText = search.value.toLowerCase();
+    searchResult.innerHTML = '';
 
     for(let product of currentProductsArray){
         let name = product.name.toLowerCase();
         let description = product.description.toLowerCase();
-        if(name.indexOf(textoBusqueda)!== -1 || description.indexOf(textoBusqueda) !== -1){
+        if(name.indexOf(searchText)!== -1 || description.indexOf(searchText) !== -1){
             
-            resultadoBusqueda.innerHTML += `
+            searchResult.innerHTML += `
             <div class="row list-group-item-action mt-4 border-light rounded">
                 <div class="col-3 pl-0">
                     <img src="` + product.imgSrc + `" alt="` + product.description + `" class="img-fluid rounded">

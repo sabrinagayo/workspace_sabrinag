@@ -3,15 +3,15 @@
 //elementos HTML presentes.
 
 document.addEventListener("DOMContentLoaded", function(e){
-	function validacion(event) {
+	function validation(event) {
 		event.preventDefault();//Evita que se haga la petición al servidor enviando los datos
-		nombreUsuario = document.getElementById('nombreUsuario').value;
-		if (nombreUsuario != null || nombreUsuario !=0) {
-			sessionStorage.setItem('logueado', 'true');//cambia el estado del usuario a logueado
-			sessionStorage.setItem('nombreUsuario', nombreUsuario);//guarda en un local storage el nombre del usuario
+		userName = document.getElementById('userName').value;
+		if (userName != null || userName !=0) {
+			sessionStorage.setItem('logged', 'true');//cambia el estado del usuario a logged
+			sessionStorage.setItem('userName', userName);//guarda en un local storage el nombre del usuario
 			window.location.replace("index.html");//redirije al index.html
 			return true;//hace que al final la información se envíe al servidor
 		}
 	} 
-	document.getElementById('miFormulario').addEventListener('submit', validacion)
+	document.getElementById('miFormulario').addEventListener('submit', validation)
 });

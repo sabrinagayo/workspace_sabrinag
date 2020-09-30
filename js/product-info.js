@@ -19,28 +19,28 @@ function append(parent, el){
 function getQueryVariable(variable){
 	var query = decodeUrl.substring(1);
 	var vars = query.split("=");
-	var nombreAuto = vars[0];
-	var variableAuto = vars[1];
+	var carName = vars[0];
+	var carVar = vars[1];
 
-	if (nombreAuto == variable){
-		return variableAuto;
+	if (carName == variable){
+		return carVar;
 	}
 
 	return false;
 }
 
-let nombreUrl = getQueryVariable("nombre");
+let urlName = getQueryVariable("nombre");
 
 
-function imagenCarrusel(array){
+function carouselImage(array){
 	htmlContentToAppend = "";
 	htmlContentToAppend2 = "";
 	htmlContentToAppend3 = "";
 	for(i = 0; i < array.length; i++){
-		var imagen = array[i];
-		var imagenActive = array[0];
+		var image = array[i];
+		var activeImage = array[0];
 		htmlContentToAppend2 = `
-		<img class="border" src="`+imagen+`" style="width: 100%; padding: 5%;">
+		<img class="border" src="`+image+`" style="width: 100%; padding: 5%;">
 		`;
 		if (i>0) {
 			htmlContentToAppend3 = `
@@ -48,7 +48,7 @@ function imagenCarrusel(array){
 			`;
 			htmlContentToAppend = `
 	        <div class="carousel-item">
-	          <img class="d-block w-100" src="`+imagen+`" alt="Second slide">
+	          <img class="d-block w-100" src="`+image+`" alt="Second slide">
 	        </div>
 			`;
 		}else{
@@ -57,7 +57,7 @@ function imagenCarrusel(array){
 			`;
 			htmlContentToAppend = `
 	        <div class="carousel-item active">
-	          <img class="d-block w-100" src="`+imagenActive+`" alt="Second slide">
+	          <img class="d-block w-100" src="`+activeImage+`" alt="Second slide">
 	        </div>
 			`;
 		}
@@ -67,34 +67,34 @@ function imagenCarrusel(array){
 	}
 }
 
-function pintarProducto(){
-	var nombreProducto = document.getElementById("nombreProducto");
-	var categoriaProducto = document.getElementById("categoriaProducto");
-	var descripcionProducto = document.getElementById("descripcionProducto");
-	var precioProducto = document.getElementById("precioProducto");
-	nombreProducto.innerHTML = nombreUrl;
-	categoriaProducto.innerHTML = infoObj.category;
-	descripcionProducto.innerHTML = infoObj.description;
-	precioProducto.innerHTML = infoObj.cost;
-	imagenCarrusel(infoObj.images);
+function getProduct(){
+	var productName = document.getElementById("nombreProducto");
+	var productCategory = document.getElementById("categoriaProducto");
+	var productDescription = document.getElementById("descripcionProducto");
+	var productPrice = document.getElementById("precioProducto");
+	productName.innerHTML = urlName;
+	productCategory.innerHTML = infoObj.category;
+	productDescription.innerHTML = infoObj.description;
+	productPrice.innerHTML = infoObj.cost;
+	carouselImage(infoObj.images);
 }
 
-function pintarProductosRelacionados(array, productosRelacionados){
+function getRelatedProducts(array, relatedProducts){
 	let htmlContentToAppend = ""
-	for (let i = 0; i < productosRelacionados.length; i++) {
-		let productoRel = array[productosRelacionados[i]];
+	for (let i = 0; i < relatedProducts.length; i++) {
+		let relatedProduct = array[relatedProducts[i]];
 		htmlContentToAppend += `
 		<div class="col-lg-6 card">
-	        <a href="product-info.html?nombre=` + productoRel.name + `" style="color: black; text-decoration: none;">
+	        <a href="product-info.html?nombre=` + relatedProduct.name + `" style="color: black; text-decoration: none;">
 	          	<div class="view overlay">
-	            	<img class="card-img-top" src="`+productoRel.imgSrc+`"
-	              alt="` + productoRel.description + `">
+	            	<img class="card-img-top" src="`+relatedProduct.imgSrc+`"
+	              alt="` + relatedProduct.description + `">
 	          	</div>
 	          	<div class="card-body">
-	            	<h4 class="card-title">`+productoRel.name+`</h4>
-	            	<p class="card-text">`+productoRel.description+`</p>
-	            	<small class="text-muted">` + productoRel.cost + ` USD</small>
-	            	<a href="product-info.html?nombre=` + productoRel.name + `" class="btn btn-info btn-block">Ver producto</a>
+	            	<h4 class="card-title">`+relatedProduct.name+`</h4>
+	            	<p class="card-text">`+relatedProduct.description+`</p>
+	            	<small class="text-muted">` + relatedProduct.cost + ` USD</small>
+	            	<a href="product-info.html?nombre=` + relatedProduct.name + `" class="btn btn-info btn-block">Ver producto</a>
 	          	</div>
 	        </div>
         </div>
@@ -103,19 +103,19 @@ function pintarProductosRelacionados(array, productosRelacionados){
 	document.getElementById('container-productosRelacionados').innerHTML = htmlContentToAppend;
 }
 
-function pintarComentarios(){
+function getComments(){
 	htmlContentToAppend = "";
 	for(var i = 0; i < productObj.length; i++){
 		var comment = productObj[i];
-		let valoracion = comment.score;
-		let comentario = comment.description;
+		let score = comment.score;
+		let commentDescription = comment.description;
 		let container = document.getElementById("comentariosJson");
-		let nombreUsuario = comment.user;
-		let fechaComentario = comment.dateTime;
+		let userName = comment.user;
+		let commentDate = comment.dateTime;
 		htmlContentToAppend = `
 		<div style="padding-bottom: 10%;">
 			<div class="score_valoracion">
-			  <span>Valoración: `+valoracion+`</span>
+			  <span>Valoración: `+score+`</span>
 			  <span class="fa fa-star"></span>
 			  <span class="fa fa-star"></span>
 			  <span class="fa fa-star"></span>
@@ -123,38 +123,38 @@ function pintarComentarios(){
 			  <span class="fa fa-star"></span>   
 			</div>
 			<div class="valoracion text-justify">
-			  <p class="descripcion_valoracion">`+comentario+`</p>
-			  <p class="usuario-valoracion">Usuario: `+nombreUsuario+`</p>
-			  <small>Fecha de publicación: `+fechaComentario+`</small>
+			  <p class="descripcion_valoracion">`+commentDescription+`</p>
+			  <p class="usuario-valoracion">Usuario: `+userName+`</p>
+			  <small>Fecha de publicación: `+commentDate+`</small>
 			</div>
 		</div>
 		`
-		let elementoComentario = createNode('div');
-		elementoComentario.innerHTML += htmlContentToAppend;
+		let commentElement = createNode('div');
+		commentElement.innerHTML += htmlContentToAppend;
 
-		var estrellas = elementoComentario.getElementsByClassName('fa-star');
+		var stars = commentElement.getElementsByClassName('fa-star');
 
-		for (let i = 0; i < valoracion; i++) {
-			estrellas[i].classList.add('checked');
+		for (let i = 0; i < score; i++) {
+			stars[i].classList.add('checked');
 		}
-		append(container, elementoComentario);
+		append(container, commentElement);
 	}
 }
 
-function nuevoComentario(event){
+function newComment(event){
 	event.preventDefault();
-	let valoracion = document.getElementById("score").value;
-	let comentario = document.getElementById("textoComentario").value;
+	let score = document.getElementById("score").value;
+	let comment = document.getElementById("textoComentario").value;
 	let container = document.getElementById("nuevoComentario");
-	let nombreUsuario = sessionStorage.getItem('nombreUsuario');
+	let userName = sessionStorage.getItem('nombreUsuario');
 	let today = new Date();
-	let fechaActual = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-	let horaActual = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-	let fechaComentario = fechaActual+` `+horaActual;
+	let currentDate = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+	let currentTime = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+	let commentDate = currentDate+` `+currentTime;
 	htmlContentToAppend = `
 	<div style="padding-bottom: 10%;">
 		<div class="score_valoracion">
-		  <span>Valoración: `+valoracion+`</span>
+		  <span>Valoración: `+score+`</span>
 		  <span class="fa fa-star"></span>
 		  <span class="fa fa-star"></span>
 		  <span class="fa fa-star"></span>
@@ -162,21 +162,21 @@ function nuevoComentario(event){
 		  <span class="fa fa-star"></span>   
 		</div>
 		<div class="valoracion text-justify">
-		  <p class="descripcion_valoracion">`+comentario+`</p>
-		  <p class="usuario-valoracion">Usuario: `+nombreUsuario+`</p>
-		  <small>Fecha de publicación: `+fechaComentario+`</small>
+		  <p class="descripcion_valoracion">`+comment+`</p>
+		  <p class="usuario-valoracion">Usuario: `+userName+`</p>
+		  <small>Fecha de publicación: `+commentDate+`</small>
 		</div>
 	</div>
 	`
-	let elementoComentario = createNode('div');
-	elementoComentario.innerHTML += htmlContentToAppend;
+	let commentElement = createNode('div');
+	commentElement.innerHTML += htmlContentToAppend;
 
-	var estrellas = elementoComentario.getElementsByClassName('fa-star');
+	var stars = commentElement.getElementsByClassName('fa-star');
 
-	for (var i = 0; i < valoracion; i++) {
-		estrellas[i].classList.add('checked');
+	for (var i = 0; i < score; i++) {
+		stars[i].classList.add('checked');
 	}
-	append(container, elementoComentario);
+	append(container, commentElement);
 }
 
 document.addEventListener("DOMContentLoaded", function(e){
@@ -184,18 +184,18 @@ document.addEventListener("DOMContentLoaded", function(e){
 	.then(function(response){
 		if (response.status = "ok"){
 			productObj = response.data;
-			pintarComentarios(productObj);
+			getComments(productObj);
 		}
 	});
 	getJSONData(PRODUCT_INFO_URL)
 	.then(function(response){
 		if (response.status = "ok"){
 			infoObj = response.data;
-			pintarProducto();
+			getProduct();
 			getJSONData(PRODUCTS_URL).then(function(response){
 				if (response.status = "ok") {
 					relatedData = response.data;
-					pintarProductosRelacionados(relatedData, infoObj.relatedProducts);
+					getRelatedProducts(relatedData, infoObj.relatedProducts);
 				}
 			});
 		}

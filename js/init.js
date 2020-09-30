@@ -40,12 +40,12 @@ var getJSONData = function(url){
     });
 }
 
-var pintarNombreUsuario = function(){
-  var nombreUsuario = sessionStorage.getItem('nombreUsuario');
+var getUserName = function(){
+  var userName = sessionStorage.getItem('userName');
   document.getElementById("navegador").innerHTML += 
   `
   <button class="btn dropdown-toggle btn-outline-secondary text-white" type="button" data-toggle="dropdown"
-    aria-haspopup="true" aria-expanded="false" >` + nombreUsuario + `</button>
+    aria-haspopup="true" aria-expanded="false" >` + userName + `</button>
 
   <div class="dropdown-menu">
     <a class="dropdown-item" href="cart.html">Mi carrito</a>
@@ -57,16 +57,16 @@ var pintarNombreUsuario = function(){
 }
 function logOut(event){
   event.preventDefault();
-  sessionStorage.removeItem('logueado');
-  sessionStorage.removeItem('nombreUsuario');
+  sessionStorage.removeItem('logged');
+  sessionStorage.removeItem('userName');
   window.location.href = 'login.html';
 }
 
-var logueado = sessionStorage.getItem('logueado');//si el usuario no está logeado redirigir a login.html
-if (!window.location.href.endsWith('login.html') && sessionStorage.getItem('logueado') !== 'true') {//Si no está en el login y no se ha logeado
+var logged = sessionStorage.getItem('logged');//si el usuario no está logeado redirigir a login.html
+if (!window.location.href.endsWith('login.html') && sessionStorage.getItem('logged') !== 'true') {//Si no está en el login y no se ha logeado
   window.location.href = 'login.html'//redirigir a login.html
-}else{//si está logueado llama al nombre del usuario y lo pinta en el NAV
-  pintarNombreUsuario();  
+}else{//si está logged llama al nombre del usuario y lo pinta en el NAV
+  getUserName();  
 }
 
 
