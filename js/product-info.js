@@ -32,61 +32,41 @@ function getQueryVariable(variable){
 let nombreUrl = getQueryVariable("nombre");
 
 
-function productoImagen(){
+function imagenCarrusel(array){
 	htmlContentToAppend = "";
-	for(i = 0; i < infoObj.images.length; i++){
-		var imagen = infoObj.images[i];
-		htmlContentToAppend += `
-	        <img class="border" src="`+imagen+`" style="width: 100%; padding: 5%;">
-		`
-	}
-	document.getElementById("image-container").innerHTML = htmlContentToAppend;
-}
-/*
-function imagenCarrusel(){
-	htmlContentToAppend = "";
-	for(i = 0; i < infoObj.images.length; i++){
-		var imagen = infoObj.images[i];
-		htmlContentToAppend += `
-        <div id="carousel-example-1z" class="carousel slide carousel-fade" data-ride="carousel">
-          <ol class="carousel-indicators">
-            <li data-target="#carousel-example-1z" data-slide-to="0" class="active"></li>
-            <li data-target="#carousel-example-1z" data-slide-to="1"></li>
-            <li data-target="#carousel-example-1z" data-slide-to="2"></li>
-            <li data-target="#carousel-example-1z" data-slide-to="3"></li>
-            <li data-target="#carousel-example-1z" data-slide-to="4"></li>
-          </ol>
-          <div class="carousel-inner" role="listbox">
-            <div class="carousel-item active">
-              <img class="d-block w-100" src="`+imagen+`" alt="First slide">
-            </div>
-            <div class="carousel-item">
-              <img class="d-block w-100" src="img/prod1_1.jpg" alt="First slide">
-            </div>
-            <div class="carousel-item">
-              <img class="d-block w-100" src="img/prod1_2.jpg" alt="First slide">
-            </div>
-            <div class="carousel-item">
-              <img class="d-block w-100" src="img/prod1_3.jpg" alt="First slide">
-            </div>
-            <div class="carousel-item">
-              <img class="d-block w-100" src="img/prod1_4.jpg" alt="First slide">
-            </div>
-          </div>
-          <a class="carousel-control-prev" href="#carousel-example-1z" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="carousel-control-next" href="#carousel-example-1z" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
-        </div>
+	htmlContentToAppend2 = "";
+	htmlContentToAppend3 = "";
+	for(i = 0; i < array.length; i++){
+		var imagen = array[i];
+		var imagenActive = array[0];
+		htmlContentToAppend2 = `
+		<img class="border" src="`+imagen+`" style="width: 100%; padding: 5%;">
 		`;
+		if (i>0) {
+			htmlContentToAppend3 = `
+			<li data-target="#carousel-example-1z" data-slide-to="`+i+`"></li>
+			`;
+			htmlContentToAppend = `
+	        <div class="carousel-item">
+	          <img class="d-block w-100" src="`+imagen+`" alt="Second slide">
+	        </div>
+			`;
+		}else{
+			htmlContentToAppend3 = `
+			<li data-target="#carousel-example-1z" data-slide-to="`+i+`" class="active"></li>
+			`;
+			htmlContentToAppend = `
+	        <div class="carousel-item active">
+	          <img class="d-block w-100" src="`+imagenActive+`" alt="Second slide">
+	        </div>
+			`;
+		}
+		document.getElementById("liImages").innerHTML += htmlContentToAppend3;
+		document.getElementById("slide-container").innerHTML += htmlContentToAppend;
+		document.getElementById("image-container").innerHTML += htmlContentToAppend2;
 	}
-	document.getElementById("slide-container").innerHTML = htmlContentToAppend;
 }
-*/
+
 function pintarProducto(){
 	var nombreProducto = document.getElementById("nombreProducto");
 	var categoriaProducto = document.getElementById("categoriaProducto");
@@ -96,8 +76,7 @@ function pintarProducto(){
 	categoriaProducto.innerHTML = infoObj.category;
 	descripcionProducto.innerHTML = infoObj.description;
 	precioProducto.innerHTML = infoObj.cost;
-	productoImagen();
-	//imagenCarrusel();
+	imagenCarrusel(infoObj.images);
 }
 
 function pintarProductosRelacionados(array, productosRelacionados){
@@ -213,8 +192,6 @@ document.addEventListener("DOMContentLoaded", function(e){
 		if (response.status = "ok"){
 			infoObj = response.data;
 			pintarProducto();
-//la funcion recibe 2 param showRelated(arrayRelated, )
-//showRelated(arrayRelated, productosRelacionados)
 			getJSONData(PRODUCTS_URL).then(function(response){
 				if (response.status = "ok") {
 					relatedData = response.data;
