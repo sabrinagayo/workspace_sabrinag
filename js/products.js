@@ -108,7 +108,7 @@ var searchProducts = function(){
         if(name.indexOf(searchText)!== -1 || description.indexOf(searchText) !== -1){
             
             searchResult.innerHTML += `
-            <div class="row list-group-item-action mt-4 border-light rounded">
+            <a class="row list-group-item-action mt-4 border-light rounded" href="product-info.html?nombre=` + product.name + `" id="productoUrl">
                 <div class="col-3 pl-0">
                     <img src="` + product.imgSrc + `" alt="` + product.description + `" class="img-fluid rounded">
                 </div>
@@ -119,7 +119,7 @@ var searchProducts = function(){
                     </div>
                     <div>`+ product.description +`</div>
                 </div>
-            </div>
+            </a>
         `
         }
     }
