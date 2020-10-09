@@ -2,15 +2,16 @@
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 let selectedProducts = [];
-let tipoEnvio = 1.15;
+let shippingTax = 1.15;
 let USD = 40;
 
 function getCartItems(data){
 	htmlContentToAppend = "";
-	var subTotal = 0;
+	let subTotal = 0;
 	let productCartContainer = document.getElementById("cartInfo");
-	for (var i = 0; i < data.length; i++) {
+	for (let i = 0; i < data.length; i++) {
 		let productCart = data[i];
+
 		productCartImage = productCart.src;
 		productCartName = productCart.name;
 		productCartCount = productCart.count;
@@ -23,51 +24,61 @@ function getCartItems(data){
 		}else{
 			productCartQuantityCostUSD = productCart.count*productCart.unitCost;
 		}
-		subTotal += productCartQuantityCostUSD;
-		total = subTotal*tipoEnvio;
-		document.getElementById("subtotal").innerHTML = `Subtotal de la compra: `+subTotal+` UYU`;
-		document.getElementById("total").innerHTML = `Precio total de la compra: `+total.toFixed(0)+` UYU`;
-		htmlContentToAppend += `
-	    <div class="row border p-4" id="productOne">
-	      <div class="col-3">
-	        <img class="w-100" src="`+productCartImage+`">
-	      </div>
-	      <div class="col-9">
-	        <h1 id="productName">`+productCartName+`</h1>
-	        <small>Cantidad:</small>
-	        <input type="number" value="`+productCartCount+`" id="productCount`+i+`" onchange="selector(event)"></input>
-	        <br>
-	        <span id="productCost">Precio unitario: `+productCartCost+` </span>
-	        <span id="productCurrency">`+productCartCurrency+`</span>
-	        <br>
-	        <span id="productCartQuantityCost`+i+`">Precio de `+productCartCount+` articulo/s: `+productCartQuantityCost+` </span>
-	        <span id="productQuantityCurrency">`+productCartCurrency+`</span>
-	      </div>
-	    </div>
-		`;
 
+		subTotal += productCartQuantityCostUSD;
+		subTotalFormat = new Intl.NumberFormat("de-DE").format(subTotal);
+		total = subTotal*shippingTax;
+		totalFormat = new Intl.NumberFormat("de-DE").format(total);
+
+		htmlContentToAppend += `
+        <tr id="productcard`+i+`">
+          <td class="align-middle">
+            <img id="productImage`+i+`" src="`+productCartImage+`" style="width: 20%;">
+            <span id="productName`+i+`">`+productCartName+`</span>
+          </td>
+          <td class="align-middle">
+          	<input type="number" class="form-control" value="`+productCartCount+`" id="productCount`+i+`" onchange="selectedItems(event)" ></input>
+          </td>
+          <td class="align-middle">
+            <span id="productCost`+i+`">`+productCartCost+` </span>
+            <span id="productCurrency`+i+`">`+productCartCurrency+`</span>
+          </td>
+          <td class="align-middle">
+            <span id="productCartQuantityCost`+i+`">`+productCartQuantityCost+` </span>
+            <span id="productQuantityCurrency`+i+`">`+productCartCurrency+`</span>
+          </td>
+        </tr>
+		`;
+		document.getElementById("subtotal").innerHTML = `Subtotal: $ `+subTotalFormat;
+		document.getElementById("total").innerHTML = `Precio Total: $ `+totalFormat;
 	}
 	productCartContainer.innerHTML = htmlContentToAppend;
 
 }
-function selector(event){
+function selectedItems(event){
 	event.preventDefault();
-	var subTotal = 0;
-	for (var i = 0; i < cartData.length; i++) {
-		productCart = cartData[i];
+	let subTotal = 0;
+	for (let i = 0; i < cartData.length; i++) {
+		let productCart = cartData[i];
+		
 		selectedProducts[i] = document.getElementById("productCount"+i).value;
 		productCartQuantityCost = selectedProducts[i]*productCart.unitCost;
 		productCartCurrency = productCart.currency;
+
 		if (productCartCurrency === "USD") {
 			productCartQuantityCostUSD = selectedProducts[i]*productCart.unitCost*USD;
 		}else{
 			productCartQuantityCostUSD = selectedProducts[i]*productCart.unitCost;
 		}
+
 		subTotal += productCartQuantityCostUSD;
-		total = subTotal*tipoEnvio;
-		document.getElementById("subtotal").innerHTML = `Subtotal de la compra: `+subTotal+` UYU`;
-		document.getElementById("total").innerHTML = `Precio total de la compra: `+total.toFixed(0)+` UYU`;
-		document.getElementById("productCartQuantityCost"+i).innerHTML = `Precio de `+selectedProducts[i]+` articulo/s: `+productCartQuantityCost;
+		subTotalFormat = new Intl.NumberFormat("de-DE").format(subTotal);
+		total = subTotal*shippingTax;
+		totalFormat = new Intl.NumberFormat("de-DE").format(total);
+
+		document.getElementById("subtotal").innerHTML = `Subtotal: $ `+subTotalFormat;
+		document.getElementById("total").innerHTML = `Precio Total: $ `+totalFormat;
+		document.getElementById("productCartQuantityCost"+i).innerHTML = productCartQuantityCost;
 	}
 	
 }
@@ -80,19 +91,19 @@ document.addEventListener("DOMContentLoaded", function(e){
 			getCartItems(cartData);
 
 			document.getElementById("premiumradio").addEventListener("change", function(){
-			    tipoEnvio = 1.15;
+			    shippingTax = 1.15;
 			    getCartItems(cartData);
-			    selector();
+			    selectedItems();
 			});
 			document.getElementById("expressradio").addEventListener("change", function(){
-			    tipoEnvio = 1.07;
+			    shippingTax = 1.07;
 			    getCartItems(cartData);
-			    selector();
+			    selectedItems();
 			});
 			document.getElementById("standardradio").addEventListener("change", function(){
-			    tipoEnvio = 1.05;
+			    shippingTax = 1.05;
 			    getCartItems(cartData);
-			    selector();
+			    selectedItems();
 			});
 
 		}

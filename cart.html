@@ -22,6 +22,16 @@
       user-select: none;
     }
 
+    thead, .totalPrice {
+      background-color: black;
+      color: white;
+    }
+
+    .thead2 {
+      background-color: grey;
+      color: white;
+    }
+
     @media (min-width: 768px) {
       .bd-placeholder-img-lg {
         font-size: 3.5rem;
@@ -79,56 +89,64 @@
       <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
     </div>
   </nav>
-  <div class="container p-5" id="cartInfo">
-    <!--
-    <div class="row border p-4" id="productOne">
-      <div class="col-3" id="productImage">
-      </div>
-      <div class="col-9">
-        <h1 id="productName"></h1>
-        <small>Cantidad:</small>
-        <select id="productCount" onchange="changeQuantity(event)">
-          <option value="1">1</option>
-          <option value="2">2</option>
-          <option value="3">3</option>
-          <option value="4">4</option>
-        </select>
-        <br>
-        <span id="productCost"></span>
-        <span id="productCurrency"></span>
-        <br>
-        <span id="productCartQuantityCost"></span>
-        <span id="productQuantityCurrency"></span>
-      </div>
-    </div>
-  -->
-  </div>
-  <div class="container">
-    
-    <div class="row">
-      <div class="col-12" id="subtotal"></div>
-        <h5 class="mb-3">Método de Envío</h5>
-        <div class="d-block my-3">
-          <div class="custom-control custom-radio">
-            <input id="premiumradio" name="publicationType" type="radio" class="custom-control-input" checked="" required="">
-            <label class="custom-control-label" for="premiumradio">Premium (15%)</label>
-          </div>
-          <div class="custom-control custom-radio">
-            <input id="expressradio" name="publicationType" type="radio" class="custom-control-input" required="">
-            <label class="custom-control-label" for="expressradio">Express (7%)</label>
-          </div>
-          <div class="custom-control custom-radio">
-            <input id="standardradio" name="publicationType" type="radio" class="custom-control-input" required="">
-            <label class="custom-control-label" for="standardradio">Estándar (5%)</label>
-          </div>
-          <div class="row">
-            <button type="button" class="m-1 btn btn-link" data-toggle="modal" data-target="#contidionsModal">Ver condiciones</button>
-          </div>
-        </div>
-    </div>
-    <div class="row" id="total">
-      
-    </div>
+  <div class="container p-5">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Producto</th>
+          <th scope="col">Cantidad</th>
+          <th scope="col">Precio</th>
+          <th scope="col">Total</th>
+        </tr>
+      </thead>
+      <tbody id="cartInfo">
+
+      </tbody>
+    </table>
+    <table class="table">
+      <tbody>
+        <tr class="text-center thead2">
+          <td></td>
+          <td></td>
+          <td id="subtotal"></td>
+          <td></td>
+          <td></td>
+        </tr>
+        <tr class="align-middle">
+          <td>
+            <span>Método de Envío:</span>
+          </td>
+          <td>
+            <div class="custom-control custom-radio">
+              <input id="premiumradio" name="publicationType" type="radio" class="custom-control-input" checked="" required="">
+              <label class="custom-control-label" for="premiumradio">Premium (15%)</label>
+            </div>
+          </td>
+          <td>
+            <div class="custom-control custom-radio">
+              <input id="expressradio" name="publicationType" type="radio" class="custom-control-input" required="">
+              <label class="custom-control-label" for="expressradio">Express (7%)</label>
+            </div>
+          </td>
+          <td>
+            <div class="custom-control custom-radio">
+              <input id="standardradio" name="publicationType" type="radio" class="custom-control-input" required="">
+              <label class="custom-control-label" for="standardradio">Estándar (5%)</label>
+            </div>
+          </td>
+          <td>
+            <a data-toggle="modal" data-target="#contidionsModal"><u>Ver condiciones</u></a>
+          </td>
+        </tr>
+        <tr class="text-center totalPrice">
+          <td></td>
+          <td></td>
+          <td id="total"></td>
+          <td></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
   <div id="spinner-wrapper">
     <div class="lds-ring">
