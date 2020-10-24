@@ -32,11 +32,87 @@
       color: white;
     }
 
+    input[type=text], input[type=number] {
+      border: none;
+      border-bottom: 1px solid grey; 
+      background-color: #f7fafa;
+      -webkit-transition: width 0.5s ease-in-out;
+      transition: width 0.5s ease-in-out;
+    }
+
+    input[type=text]:focus, input[type=number]:focus {
+      width: 80%;
+    }
+
+    select {
+      width: 100%;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      border: none;
+      border-bottom: 1px solid grey;
+      border-radius: 3px; 
+      background-color: #f7fafa;
+      color: grey;
+      -webkit-transition: width 0.5s ease-in-out;
+      transition: width 0.5s ease-in-out; 
+    }
+
+    select:focus {
+      border: 3px solid #BFDEFF;
+      border-radius: 5px;
+      background-color: white;
+
+    }
+
+    .enlacePago {
+      text-decoration: underline black;
+      color: black;
+    }
+
+    .enlacePago:hover{
+      text-decoration: underline black;
+      color: black;
+    }
+
+    .buyButton {
+      background: black;
+      border: none;
+      color: white;
+      border-radius: 5px;
+      padding: 10px;
+      box-shadow:inset 0 -0.6em 1em -0.35em rgba(0,0,0,0.17),inset 0 0.6em 2em -0.3em rgba(255,255,255,0.15),inset 0 0 0em 0.05em rgba(255,255,255,0.12);
+    }
+
+    .buyButton:active {
+      box-shadow:inset 0 0.6em 2em -0.3em rgba(0,0,0,0.15),inset 0 0 0em 0.05em rgba(255,255,255,0.12);
+    }
+
+    .buyButton:disabled,
+    .buyButton[disabled]{
+      border: 1px solid #999999;
+      background-color: #cccccc;
+      color: #666666;
+    }
+
+    .modal-header{
+      background-color: black;
+    }
+
+    .linkCSS:hover,
+    .linkCSS:focus {
+      background-color: grey;
+    }
+    
+    #creditCardContainer-tab, #transferContainer-tab{
+      color: #5c5e5d;
+    }
+
     @media (min-width: 768px) {
       .bd-placeholder-img-lg {
         font-size: 3.5rem;
       }
     }
+
   </style>
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
@@ -81,6 +157,56 @@
       </div>
     </div>
   </div>
+
+  <div class="modal fade" id="modalShippingMethod" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header text-center">
+          <div class="modal-title w-100 font-weight-bold">
+
+            <ul class="nav nav-tabs" id="myTab" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link linkCSS active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+                  aria-selected="true"></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link linkCSS" id="creditCardContainer-tab" data-toggle="tab" href="#creditCardContainer" role="tab" aria-controls="creditCardContainer"
+                  aria-selected="true" onclick="creditCardPayment(event);" name="cardButton">Tarjeta de Crédito</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link linkCSS" id="transferContainer-tab" data-toggle="tab" href="#transferContainer" role="tab" aria-controls="transferContainer" aria-selected="false"  name="transferButton" onclick="transferPayment(event);">Transferencia Bancaria</a>
+              </li>
+            </ul>
+
+          </div>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="color: white;">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body mx-3 tab-content" id="myTabContent">
+
+          <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+            Seleccione un método de pago.
+          </div>
+
+          <!--CONTENEDOR TARJETA DE CRÉDITO -->
+          <div div class="tab-pane fade show active container-fluid" role="tabpanel" aria-labelledby="creditCardContainer-tab" id="creditCardContainer">
+
+
+          </div>
+          <!--FINCONTENEDOR TARJETA DE CRÉDITO -->
+
+          <!--CONTENEDOR TRANSFERENCIA BANCARIA -->
+          <div class="container-fluid tab-pane fade" role="tabpanel" aria-labelledby="transferContainer-tab" id="transferContainer">
+
+          </div>
+          <!--FIN CONTENEDOR TRANSFERENCIA BANCARIA -->
+        </div>
+      </div>
+    </div>
+  </div>
+
   <nav class="site-header sticky-top py-1 bg-dark">
     <div class="container d-flex flex-column flex-md-row justify-content-between" id="navegador">
       <a class="py-2 d-none d-md-inline-block" href="index.html">Inicio</a>
@@ -89,64 +215,165 @@
       <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
     </div>
   </nav>
-  <div class="container p-5">
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">Producto</th>
-          <th scope="col">Cantidad</th>
-          <th scope="col">Precio</th>
-          <th scope="col">Total</th>
-        </tr>
-      </thead>
-      <tbody id="cartInfo">
+  <div class="container-fluid p-5">
+    <div class="row">
+      <div class="col-8 pr-5">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Producto</th>
+              <th scope="col">Cantidad</th>
+              <th scope="col">Precio</th>
+              <th scope="col">Total</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody id="cartInfo">
 
-      </tbody>
-    </table>
-    <table class="table">
-      <tbody>
-        <tr class="text-center thead2">
-          <td></td>
-          <td></td>
-          <td id="subtotal"></td>
-          <td></td>
-          <td></td>
-        </tr>
-        <tr class="align-middle">
-          <td>
-            <span>Método de Envío:</span>
-          </td>
-          <td>
-            <div class="custom-control custom-radio">
-              <input id="premiumradio" name="publicationType" type="radio" class="custom-control-input" checked="" required="">
-              <label class="custom-control-label" for="premiumradio">Premium (15%)</label>
-            </div>
-          </td>
-          <td>
-            <div class="custom-control custom-radio">
-              <input id="expressradio" name="publicationType" type="radio" class="custom-control-input" required="">
-              <label class="custom-control-label" for="expressradio">Express (7%)</label>
-            </div>
-          </td>
-          <td>
-            <div class="custom-control custom-radio">
-              <input id="standardradio" name="publicationType" type="radio" class="custom-control-input" required="">
-              <label class="custom-control-label" for="standardradio">Estándar (5%)</label>
-            </div>
-          </td>
-          <td>
-            <a data-toggle="modal" data-target="#contidionsModal"><u>Ver condiciones</u></a>
-          </td>
-        </tr>
-        <tr class="text-center totalPrice">
-          <td></td>
-          <td></td>
-          <td id="total"></td>
-          <td></td>
-          <td></td>
-        </tr>
-      </tbody>
-    </table>
+          </tbody>
+        </table>
+        <table class="table">
+          <tbody>
+            <tr class="text-center thead2">
+              <td></td>
+              <td></td>
+              <td id="subtotal"></td>
+              <td></td>
+              <td></td>
+            </tr>
+            <tr class="align-middle">
+              <td>
+                <span>Método de Envío:</span>
+              </td>
+              <td>
+                <div class="custom-control custom-radio">
+                  <input id="premiumradio" name="publicationType" type="radio" class="custom-control-input" onchange="premiumTax(event);" checked="" required="">
+                  <label class="custom-control-label" for="premiumradio">Premium (15%)</label>
+                </div>
+              </td>
+              <td>
+                <div class="custom-control custom-radio">
+                  <input id="expressradio" name="publicationType" type="radio" class="custom-control-input" onchange="expressTax(event);" required="">
+                  <label class="custom-control-label" for="expressradio">Express (7%)</label>
+                </div>
+              </td>
+              <td>
+                <div class="custom-control custom-radio">
+                  <input id="standardradio" name="publicationType" type="radio" class="custom-control-input" onchange="standardTax(event);" required="">
+                  <label class="custom-control-label" for="standardradio">Estándar (5%)</label>
+                </div>
+              </td>
+              <td>
+                <a data-toggle="modal" data-target="#contidionsModal"><u>Ver condiciones</u></a>
+              </td>
+            </tr>
+            <tr class="text-center totalPrice">
+              <td></td>
+              <td></td>
+              <td id="total"></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-4">
+        <!-- Card -->
+        <div class="card">
+
+          <!-- Card content -->
+          <div class="card-body">
+
+            <!-- Title -->
+            <h4 class="card-title">Datos de envío</h4>
+            <!-- Text -->
+
+            <form id="shippingForm" name="shippingForm" method="GET" action="">
+              <div class="row">
+                <div class="col">
+                  <small>Los campos marcados con (*) son obligatorios.</small>
+                </div>
+              </div>
+              <div class="row py-4">
+
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="Nombre*" id="userName" name="userName" required>
+                </div>
+
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="Apellido/s*" id="userLastName" name="userLastName" required>
+                </div>
+
+              </div>
+
+              <div class="row pb-4">
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="Cédula/Documento*" id="userDocument" name="userDocument" pattern="((^[0-9]{7})?([-])+([0-9]{1})$)|(^[0-9]{8})" required>
+                </div>
+              </div>
+
+              <div class="row pb-4">
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="Celular*" id="userPhone" name="userPhone" pattern="(^[0]+[0-9]{8})|(^[9]+[0-9]{7})" required>
+                </div>
+              </div>
+              <div class="row pb-4">
+                <div class="col">
+                  <!--Departamento -->
+                  <select name="userDepartment" id="userDepartment" required>
+                    <option value="" disabled selected>&nbsp;&nbsp;Departamento*</option>
+                    <option value="Artigas">Artigas</option> 
+                    <option value="Canelones">Canelones</option> 
+                    <option value="Cerro Largo">Cerro Largo</option>
+                    <option value="Colonia">Colonia</option> 
+                    <option value="Durazno">Durazno</option> 
+                    <option value="Flores">Flores</option>
+                    <option value="Florida">Florida</option> 
+                    <option value="Lavalleja">Lavalleja</option> 
+                    <option value="Maldonado">Maldonado</option>
+                    <option value="Montevideo">Montevideo</option> 
+                    <option value="Paysandú">Paysandú</option> 
+                    <option value="Río Negro">Río Negro</option>
+                    <option value="Rivera">Rivera</option> 
+                    <option value="Rocha">Rocha</option>
+                    <option value="Salto">Salto</option> 
+                    <option value="San José">San José</option>
+                    <option value="Soriano">Soriano</option> 
+                    <option value="Tacuarembó">Tacuarembó</option>
+                    <option value="Treinta Y Tres">Treinta Y Tres</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="row pb-4">
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="Calle y número*" id="userStreet" name="userStreet" pattern="[A-Z a-z]+ [0-9]+" required>
+                </div>
+              </div>
+
+              <div class="row pb-4">
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="Esquina" id="userCorner" name="userCorner" pattern="[A-Z a-z]+">
+                </div>
+
+                <div class="col">
+                  <input type="text" class="form-control" placeholder="Código Postal*" id="userPostalCode" name="userPostalCode" pattern="[0-9]{5}" required>
+                </div>
+              </div>
+              <div class="row py-3">
+                <div class="col">
+                  <a href="" class="enlacePago linkCSS mb-4" data-toggle="modal" data-target="#modalShippingMethod">Seleccionar método de pago</a>
+                </div>
+              </div>
+              <button class="my-4 btn-block buyButton" type="submit">Comprar</button>
+            </form>
+
+          </div>
+
+        </div>
+        <!-- Card -->
+      </div>
+    </div>
   </div>
   <div id="spinner-wrapper">
     <div class="lds-ring">

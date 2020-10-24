@@ -13,5 +13,5 @@ document.addEventListener("DOMContentLoaded", function(e){
 			return true;//hace que al final la información se envíe al servidor
 		}
 	} 
-	document.getElementById('miFormulario').addEventListener('submit', validation)
+	document.getElementById('miFormulario').addEventListener('submit', validation);
 });
