@@ -74,6 +74,7 @@ function userDataForm(event){
 
 }
 
+
 function saveUserData(event){
 
 	let userName = document.getElementById('userNameData').value;
@@ -91,46 +92,41 @@ function saveUserData(event){
 	}
 
 	localStorage.setItem('user', JSON.stringify(user));
-	
 }
 
 function paintUserData(){
-	let userData =JSON.parse(localStorage.getItem('user'));
-	let nameContainer = document.getElementById('nameContainer');
-	let lastNameContainer = document.getElementById('lastNameContainer');
-	let phoneContainer = document.getElementById('phoneContainer');
-	let emailContainer = document.getElementById('emailContainer');
-	let ageContainer = document.getElementById('ageContainer');
+  let userData =JSON.parse(localStorage.getItem('user'));
+  let nameContainer = document.getElementById('nameContainer');
+  let lastNameContainer = document.getElementById('lastNameContainer');
+  let phoneContainer = document.getElementById('phoneContainer');
+  let emailContainer = document.getElementById('emailContainer');
+  let ageContainer = document.getElementById('ageContainer');
 
-	nameContainer.innerHTML = userData.name;
-	lastNameContainer.innerHTML = userData.lastName;
-	phoneContainer.innerHTML = userData.phone;
-	emailContainer.innerHTML = userData.email;
-	ageContainer.innerHTML = userData.age;
+  nameContainer.innerHTML = userData.name;
+  lastNameContainer.innerHTML = userData.lastName;
+  phoneContainer.innerHTML = userData.phone;
+  emailContainer.innerHTML = userData.email;
+  ageContainer.innerHTML = userData.age;
 }
 
-
-//Función que se ejecuta una vez que se haya lanzado el evento de
-//que el documento se encuentra cargado, es decir, se encuentran todos los
-//elementos HTML presentes.
-
-
-
-//Funcion que crea reader y una vez que la imagen este cargada la guarda en el local storage
-//luego de seleccionar el archivo
 document.querySelector("#profilePicture").addEventListener("change", function () {
+  
     const reader = new FileReader();
     reader.addEventListener("load", () => {
         localStorage.setItem("recent-image", reader.result);
     });
     reader.readAsDataURL(this.files[0]);
+    window.location.reload();
 
 });
 
 document.addEventListener("DOMContentLoaded", function (e) {
-  paintUserData();
+  
   const recentImageDataURL = localStorage.getItem("recent-image");
   if (recentImageDataURL) {
       document.querySelector("#defaultImage").setAttribute("src", recentImageDataURL);
   }
+
+  paintUserData();
+
 });
