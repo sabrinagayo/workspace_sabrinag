@@ -137,9 +137,9 @@ document.querySelector("#myFileInput").addEventListener("change", function () {
 });
 
 document.addEventListener("DOMContentLoaded", function (e) {
-
-    const recentImageDataURL = localStorage.getItem("recent-image");
-    if (recentImageDataURL) {
-        document.querySelector("#previewImage").setAttribute("src", recentImageDataURL);
-    }
+  paintUserData();
+  const recentImageDataURL = localStorage.getItem("recent-image");
+  if (recentImageDataURL) {
+      document.querySelector("#previewImage").setAttribute("src", recentImageDataURL);
+  }
 });
