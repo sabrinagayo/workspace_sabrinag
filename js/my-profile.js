@@ -18,14 +18,6 @@ function userDataForm(event){
           <!-- Title -->
           <h4 class="card-title text-center">Datos del usuario</h4>
           <!-- Text -->
-            <div class="row py-4">
-
-              <div class="col avatar white text-center">
-
-              </div>
-
-            </div>
-
 
             <div class="row">
               <div class="col text-center">
@@ -126,13 +118,12 @@ function paintUserData(){
 
 //Funcion que crea reader y una vez que la imagen este cargada la guarda en el local storage
 //luego de seleccionar el archivo
-document.querySelector("#myFileInput").addEventListener("change", function () {
+document.querySelector("#profilePicture").addEventListener("change", function () {
     const reader = new FileReader();
     reader.addEventListener("load", () => {
         localStorage.setItem("recent-image", reader.result);
     });
     reader.readAsDataURL(this.files[0]);
-    
 
 });
 
@@ -140,6 +131,6 @@ document.addEventListener("DOMContentLoaded", function (e) {
   paintUserData();
   const recentImageDataURL = localStorage.getItem("recent-image");
   if (recentImageDataURL) {
-      document.querySelector("#previewImage").setAttribute("src", recentImageDataURL);
+      document.querySelector("#defaultImage").setAttribute("src", recentImageDataURL);
   }
 });
