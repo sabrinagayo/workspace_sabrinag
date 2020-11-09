@@ -43,11 +43,74 @@
     </div>
   </nav>
   <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 7 (Fecha de entrega: 8/11/202020) -> Punto 1 y 2.</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+    <div class="row">
+      <div class="col-lg-3 col-md-1"></div>
+      <div class="col-lg-6 col-md-10" id="formDataContainter">
+        <div class="card">
+
+          <!-- Card content -->
+          <div class="card-body">
+
+            <!-- Title -->
+            <h4 class="card-title text-center">Datos del usuario</h4>
+            <!-- Text 
+            <div class="row py-4">
+
+              <div class="col avatar white text-center">
+                <a href="https://ibb.co/BZ9jV8R">
+                  <img src="https://i.ibb.co/58PvWqV/avatar-1295399-960-720.png" class="rounded-circle myProfileAvatar"
+                  alt="avatar" id="previewImage">
+                </a>
+                <input type="file" name="profilePicture" id="profilePicture">
+              </div>
+
+            </div>
+          -->
+            <img id="previewImage" src="https://i.ibb.co/qy3TrKD/146-1468479-my-profile-icon-blank-profile-picture-circle-hd-300x238.png"
+              alt="146-1468479-my-profile-icon-blank-profile-picture-circle-hd-300x238" border="0" width="200px">
+            <br>
+            <input class="selectFileButton" type="file" id="myFileInput">
+            
+            <div class="row py-4">
+
+              <div class="col">
+                <h6 class="text-justify py-2">Nombre: <span id="nameContainer"></span></h6>
+              </div>
+
+            </div>
+
+            <div class="row pb-4">
+
+              <div class="col">
+                <h6 class="text-justify py-2">Apellido: <span id="lastNameContainer"></span></h6>
+              </div>
+
+            </div>
+
+            <div class="row pb-4">
+              <div class="col">
+                <h6 class="text-justify py-2">Celular: <span id="phoneContainer"></span></h6>
+              </div>
+            </div>
+
+            <div class="row pb-4">
+              <div class="col">
+                <h6 class="text-justify py-2">Email: <span id="emailContainer"></span></h6>
+              </div>
+            </div>
+
+            <div class="row pb-4">
+              <div class="col">
+                <h6 class="text-justify py-2">Edad: <span id="ageContainer"></span></h6>
+              </div>
+            </div>
+
+            <button class="my-4 btn-block customButton" id="saveUserData" onclick="userDataForm(event);" type="submit">Modificar datos</button>
+          </div>
+
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-1 col-md-1"></div>
     </div>
   </div>
   <footer class="text-muted bg-light">

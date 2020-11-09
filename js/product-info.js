@@ -40,7 +40,7 @@ function carouselImage(array){
 		var image = array[i];
 		var activeImage = array[0];
 		htmlContentToAppend2 = `
-		<img class="border" src="`+image+`" style="width: 100%; padding: 5%;">
+		<img class="border w-100" src="`+image+`">
 		`;
 		if (i>0) {
 			htmlContentToAppend3 = `
@@ -85,7 +85,7 @@ function getRelatedProducts(array, relatedProducts){
 		let relatedProduct = array[relatedProducts[i]];
 		htmlContentToAppend += `
 		<div class="col-lg-6 card">
-	        <a href="product-info.html?nombre=` + relatedProduct.name + `" style="color: black; text-decoration: none;">
+	        <a href="product-info.html?nombre=` + relatedProduct.name + `" class="text-dark productInfoLink">
 	          	<div class="view overlay">
 	            	<img class="card-img-top" src="`+relatedProduct.imgSrc+`"
 	              alt="` + relatedProduct.description + `">
@@ -113,7 +113,7 @@ function getComments(){
 		let userName = comment.user;
 		let commentDate = comment.dateTime;
 		htmlContentToAppend = `
-		<div style="padding-bottom: 10%;">
+		<div class="pb-5">
 			<div class="score_valoracion">
 			  <span>Valoración: `+score+`</span>
 			  <span class="fa fa-star"></span>
@@ -144,15 +144,15 @@ function getComments(){
 function newComment(event){
 	event.preventDefault();
 	let score = document.getElementById("score").value;
-	let comment = document.getElementById("textoComentario").value;
-	let container = document.getElementById("nuevoComentario");
-	let userName = sessionStorage.getItem('nombreUsuario');
+	let comment = document.getElementById("commentText").value;
+	let container = document.getElementById("newComment");
+	let userName = sessionStorage.getItem('userName');
 	let today = new Date();
 	let currentDate = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
 	let currentTime = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
 	let commentDate = currentDate+` `+currentTime;
 	htmlContentToAppend = `
-	<div style="padding-bottom: 10%;">
+	<div class="pb-5">
 		<div class="score_valoracion">
 		  <span>Valoración: `+score+`</span>
 		  <span class="fa fa-star"></span>

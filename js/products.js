@@ -62,18 +62,18 @@ var showProductsList = function(){
             ((maxCost == undefined) || (maxCost != undefined && parseInt(product.cost) <= maxCost))){
 
         htmlContentToAppend += `
-            <a class="row list-group-item-action mt-4 border-light rounded" href="product-info.html?nombre=` + product.name + `" id="productoUrl">
-                <div class="col-3 pl-0">
-                    <img src="` + product.imgSrc + `" alt="` + product.description + `" class="img-fluid rounded">
-                </div>
-                <div class="col">
-                    <div class="d-flex w-100 justify-content-between pt-2">
-                        <h4 class="mb-1">`+ product.name +`</h4>
-                        <small class="text-muted">` + product.cost + ` USD</small>
-                    </div>
-                    <div>`+ product.description +`</div>
+        <div class="col-md-4 col-sm-6 col-12 py-3">
+            <a href="product-info.html?nombre=` + product.name + `" id="productoUrl">
+                <div class="card">
+                  <img src="` + product.imgSrc + `" class="card-img-top" alt="` + product.description + `">
+                  <div class="card-body">
+                    <h5 class="card-title">`+ product.name +`</h5>
+                    <small class="text-muted">` + product.cost + ` USD</small>
+                    <p class="card-text" style="height: 3.6em; text-overflow: -o-ellipsis-lastline;">`+ product.description +`</p>
+                  </div>
                 </div>
             </a>
+        </div>
         `
         }
     }

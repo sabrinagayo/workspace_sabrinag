@@ -33,7 +33,7 @@ function getCartItems(data){
 		htmlContentToAppend += `
         <tr id="productcard`+i+`">
           <td class="align-middle">
-            <img id="productImage`+i+`" src="`+productCartImage+`" style="width: 20%;">
+            <img id="productImage`+i+`" src="`+productCartImage+`" class="cartImage">
             <span name="purchasedProduct" id="productName`+i+`">`+productCartName+`</span>
           </td>
           <td class="align-middle">
@@ -113,9 +113,6 @@ function deleteProduct(event){
 
 	for (let i = 0; i < cartData.length; i++) {
 		
-
-		let selectedDelete = document.getElementById("deleteButton"+i);
-		
 	
 		cartData.splice(i, 1);
 		productCartQuantityCost = cartData[i].count*cartData[i].unitCost;
@@ -133,7 +130,7 @@ function deleteProduct(event){
 		htmlContentToAppend += `
         <tr id="productcard`+i+`">
           <td class="align-middle">
-            <img id="productImage`+i+`" src="`+cartData[i].src+`" style="width: 20%;">
+            <img id="productImage`+i+`" src="`+cartData[i].src+`" class="cartImage">
             <span name="purchasedProduct" id="productName`+i+`">`+cartData[i].name+`</span>
           </td>
           <td class="align-middle">
@@ -216,15 +213,9 @@ function creditCardPayment(event){
     </div>
 
     <div class="row pb-4">
-
-    <div class="col" id="incompleteData""></div>
-
-    </div>
-
-    <div class="row pb-4">
       
       <div class="col">
-        <button class="my-4 btn-block buyButton" form="shippingForm" type="submit" id="creditButton">Continuar</button>
+        <button class="my-4 btn-block customButton" form="shippingForm" type="submit" id="creditButton">Continuar</button>
       </div>
 
     </div>
@@ -268,7 +259,7 @@ function transferPayment(event){
     <div class="row pb-4">
       
       <div class="col">
-        <button class="my-4 btn-block buyButton" form="shippingForm" type="submit" id="transferButton">Continuar</button>
+        <button class="my-4 btn-block customButton" form="shippingForm" type="submit" id="transferButton">Continuar</button>
       </div>
 
     </div>
@@ -276,6 +267,30 @@ function transferPayment(event){
 	transferContainer.innerHTML = htmlContentToAppend;
 }
 
+function formModalValidation(event){
+	event.preventDefault();
+	var message = document.getElementById("incompleteData");
+
+	var creditButton = document.getElementById("creditButton");
+	sessionStorage.setItem('complete', 'true');
+}
+
+function formBuyValidation(event){
+	event.preventDefault();
+	var sendButton = document.getElementById('sendShippingInfo');
+	var message = document.getElementById("incompleteData");
+
+	var buySession = sessionStorage.getItem('complete');
+
+	if (buySession === 'true') {
+		sessionStorage.setItem('complete', 'false');
+		return true;
+	}else{
+		message.innerHTML = `Por favor, complete todos los campos correctamente`;
+		return false;
+	}
+
+}
 
 document.addEventListener("DOMContentLoaded", function(e){
 	getJSONData('https://japdevdep.github.io/ecommerce-api/cart/654.json')

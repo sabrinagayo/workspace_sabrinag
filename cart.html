@@ -22,91 +22,6 @@
       user-select: none;
     }
 
-    thead, .totalPrice {
-      background-color: black;
-      color: white;
-    }
-
-    .thead2 {
-      background-color: grey;
-      color: white;
-    }
-
-    input[type=text], input[type=number] {
-      border: none;
-      border-bottom: 1px solid grey; 
-      background-color: #f7fafa;
-      -webkit-transition: width 0.5s ease-in-out;
-      transition: width 0.5s ease-in-out;
-    }
-
-    input[type=text]:focus, input[type=number]:focus {
-      width: 80%;
-    }
-
-    select {
-      width: 100%;
-      padding-top: 5px;
-      padding-bottom: 5px;
-      border: none;
-      border-bottom: 1px solid grey;
-      border-radius: 3px; 
-      background-color: #f7fafa;
-      color: grey;
-      -webkit-transition: width 0.5s ease-in-out;
-      transition: width 0.5s ease-in-out; 
-    }
-
-    select:focus {
-      border: 3px solid #BFDEFF;
-      border-radius: 5px;
-      background-color: white;
-
-    }
-
-    .enlacePago {
-      text-decoration: underline black;
-      color: black;
-    }
-
-    .enlacePago:hover{
-      text-decoration: underline black;
-      color: black;
-    }
-
-    .buyButton {
-      background: black;
-      border: none;
-      color: white;
-      border-radius: 5px;
-      padding: 10px;
-      box-shadow:inset 0 -0.6em 1em -0.35em rgba(0,0,0,0.17),inset 0 0.6em 2em -0.3em rgba(255,255,255,0.15),inset 0 0 0em 0.05em rgba(255,255,255,0.12);
-    }
-
-    .buyButton:active {
-      box-shadow:inset 0 0.6em 2em -0.3em rgba(0,0,0,0.15),inset 0 0 0em 0.05em rgba(255,255,255,0.12);
-    }
-
-    .buyButton:disabled,
-    .buyButton[disabled]{
-      border: 1px solid #999999;
-      background-color: #cccccc;
-      color: #666666;
-    }
-
-    .modal-header{
-      background-color: black;
-    }
-
-    .linkCSS:hover,
-    .linkCSS:focus {
-      background-color: grey;
-    }
-    
-    #creditCardContainer-tab, #transferContainer-tab{
-      color: #5c5e5d;
-    }
-
     @media (min-width: 768px) {
       .bd-placeholder-img-lg {
         font-size: 3.5rem;
@@ -124,7 +39,7 @@
   <div class="modal fade" tabindex="-1" role="dialog" id="contidionsModal">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <div class="modal-header">
+        <div class="modal-header cartModalHeader">
           <h5 class="modal-title">Condiciones de publicación</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -162,20 +77,20 @@
     aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <div class="modal-header text-center">
+        <div class="modal-header cartModalHeader text-center">
           <div class="modal-title w-100 font-weight-bold">
 
             <ul class="nav nav-tabs" id="myTab" role="tablist">
               <li class="nav-item">
-                <a class="nav-link linkCSS active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+                <a class="nav-link cartLink active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
                   aria-selected="true"></a>
               </li>
               <li class="nav-item">
-                <a class="nav-link linkCSS" id="creditCardContainer-tab" data-toggle="tab" href="#creditCardContainer" role="tab" aria-controls="creditCardContainer"
+                <a class="nav-link cartLink" id="creditCardContainer-tab" data-toggle="tab" href="#creditCardContainer" role="tab" aria-controls="creditCardContainer"
                   aria-selected="true" onclick="creditCardPayment(event);" name="cardButton">Tarjeta de Crédito</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link linkCSS" id="transferContainer-tab" data-toggle="tab" href="#transferContainer" role="tab" aria-controls="transferContainer" aria-selected="false"  name="transferButton" onclick="transferPayment(event);">Transferencia Bancaria</a>
+                <a class="nav-link cartLink" id="transferContainer-tab" data-toggle="tab" href="#transferContainer" role="tab" aria-controls="transferContainer" aria-selected="false"  name="transferButton" onclick="transferPayment(event);">Transferencia Bancaria</a>
               </li>
             </ul>
 
@@ -219,7 +134,7 @@
     <div class="row">
       <div class="col-8 pr-5">
         <table class="table">
-          <thead>
+          <thead class="cartTableHead">
             <tr>
               <th scope="col">Producto</th>
               <th scope="col">Cantidad</th>
@@ -234,7 +149,7 @@
         </table>
         <table class="table">
           <tbody>
-            <tr class="text-center thead2">
+            <tr class="text-center cartTableHead2">
               <td></td>
               <td></td>
               <td id="subtotal"></td>
@@ -267,7 +182,7 @@
                 <a data-toggle="modal" data-target="#contidionsModal"><u>Ver condiciones</u></a>
               </td>
             </tr>
-            <tr class="text-center totalPrice">
+            <tr class="text-center cartTotalPrice">
               <td></td>
               <td></td>
               <td id="total"></td>
@@ -362,10 +277,16 @@
               </div>
               <div class="row py-3">
                 <div class="col">
-                  <a href="" class="enlacePago linkCSS mb-4" data-toggle="modal" data-target="#modalShippingMethod">Seleccionar método de pago</a>
+                  <a href="" class="cartPayLink cartLink mb-4" data-toggle="modal" onclick="formModalValidation(event);" data-target="#modalShippingMethod">Seleccionar método de pago</a>
                 </div>
               </div>
-              <button class="my-4 btn-block buyButton" type="submit">Comprar</button>
+              <div class="row pb-4">
+
+                <div class="col" id="incompleteData"></div>
+
+              </div>
+
+              <button class="my-4 btn-block customButton" id="sendShippingInfo" onclick="formBuyValidation(event);" type="submit">Comprar</button>
             </form>
 
           </div>
