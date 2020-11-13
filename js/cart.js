@@ -5,61 +5,7 @@ let selectedProducts = [];
 let shippingTax = 1.15;
 let USD = 40;
 
-function getCartItems(data){
-	htmlContentToAppend = "";
-	let subTotal = 0;
-	let productCartContainer = document.getElementById("cartInfo");
-	for (let i = 0; i < data.length; i++) {
-		let productCart = data[i];
 
-		productCartImage = productCart.src;
-		productCartName = productCart.name;
-		productCartCount = productCart.count;
-		productCartCost = productCart.unitCost;
-		productCartCurrency = productCart.currency;
-		productCartQuantityCost = productCart.count*productCart.unitCost;
-
-		if (productCartCurrency === "USD") {
-			productCartQuantityCostUSD = productCartQuantityCost*USD;
-		}else{
-			productCartQuantityCostUSD = productCart.count*productCart.unitCost;
-		}
-
-		subTotal += productCartQuantityCostUSD;
-		subTotalFormat = new Intl.NumberFormat("de-DE").format(subTotal);
-		total = subTotal*shippingTax;
-		totalFormat = new Intl.NumberFormat("de-DE").format(total);
-
-		htmlContentToAppend += `
-        <tr id="productcard`+i+`">
-          <td class="align-middle">
-            <img id="productImage`+i+`" src="`+productCartImage+`" class="cartImage">
-            <span name="purchasedProduct" id="productName`+i+`">`+productCartName+`</span>
-          </td>
-          <td class="align-middle">
-          	<input type="number" name="quantityPurchasedProduct" class="form-control" value="`+productCartCount+`" id="productCount`+i+`" onchange="selectedItems(event)"></input>
-          </td>
-          <td class="align-middle">
-            <span id="productCost`+i+`">`+productCartCost+` </span>
-            <span id="productCurrency`+i+`">`+productCartCurrency+`</span>
-          </td>
-          <td class="align-middle">
-            <span id="productCartQuantityCost`+i+`">`+productCartQuantityCost+` </span>
-            <span id="productQuantityCurrency`+i+`">`+productCartCurrency+`</span>
-          </td>
-          <td>
-			<button type="button" class="close" aria-label="Close" id="deleteButton`+i+`" onclick="deleteProduct(event);">
-			  <span aria-hidden="true">×</span>
-			</button>
-          </td>
-        </tr>
-		`;
-		document.getElementById("subtotal").innerHTML = `Subtotal: $ `+subTotalFormat;
-		document.getElementById("total").innerHTML = `Precio Total: $ `+totalFormat;
-	}
-	productCartContainer.innerHTML = htmlContentToAppend;
-
-}
 function selectedItems(event){
 	event.preventDefault();
 	let subTotal = 0;
@@ -106,59 +52,6 @@ function standardTax(event){
 	selectedItems(event);
 }
 
-function deleteProduct(event){
-	htmlContentToAppend = "";
-	let subTotal = 0;
-	let productCartContainer = document.getElementById("cartInfo");
-
-	for (let i = 0; i < cartData.length; i++) {
-		
-	
-		cartData.splice(i, 1);
-		productCartQuantityCost = cartData[i].count*cartData[i].unitCost;
-
-		if (productCartCurrency === "USD") {
-			productCartQuantityCostUSD = cartData[i].unitCost*cartData[i].count*USD;
-		}else{
-			productCartQuantityCostUSD = cartData[i].unitCost*cartData[i].count;
-		}
-		subTotal += productCartQuantityCostUSD;
-		subTotalFormat = new Intl.NumberFormat("de-DE").format(subTotal);
-		total = subTotal*shippingTax;
-		totalFormat = new Intl.NumberFormat("de-DE").format(total);
-
-		htmlContentToAppend += `
-        <tr id="productcard`+i+`">
-          <td class="align-middle">
-            <img id="productImage`+i+`" src="`+cartData[i].src+`" class="cartImage">
-            <span name="purchasedProduct" id="productName`+i+`">`+cartData[i].name+`</span>
-          </td>
-          <td class="align-middle">
-          	<input type="number" name="quantityPurchasedProduct" class="form-control" value="`+productCartCount+`" id="productCount`+i+`" onchange="selectedItems(event)"></input>
-          </td>
-          <td class="align-middle">
-            <span id="productCost`+i+`">`+cartData[i].unitCost+` </span>
-            <span id="productCurrency`+i+`">`+cartData[i].currency+`</span>
-          </td>
-          <td class="align-middle">
-            <span id="productCartQuantityCost`+i+`">`+productCartQuantityCost+` </span>
-            <span id="productQuantityCurrency`+i+`">`+cartData[i].currency+`</span>
-          </td>
-          <td>
-			<button type="button" class="close" aria-label="Close" id="deleteButton`+i+`" onclick="deleteProduct(event);">
-			  <span aria-hidden="true">×</span>
-			</button>
-          </td>
-        </tr>
-		`;
-		document.getElementById("subtotal").innerHTML = `Subtotal: $ `+subTotalFormat;
-		document.getElementById("total").innerHTML = `Precio Total: $ `+totalFormat;
-	}
-	productCartContainer.innerHTML = htmlContentToAppend;
-
-
-}
-
 function creditCardPayment(event){
 	event.preventDefault();
 	let creditCardContainer = document.getElementById("creditCardContainer");
@@ -169,55 +62,42 @@ function creditCardPayment(event){
       <div class="col">
         <span>Número de tarjeta:</span>
       </div>
-
     </div>
-
     <div class="row pb-4">
       <div class="col">
         <input type="text" class="form-control" form="shippingForm" placeholder="0000 0000 0000 0000" name="userCard" id="userCard" pattern="5[1-5][0-9]{14}$" required>
       </div>
     </div>
-
     <div class="row">
       <div class="col">
         <span>Caducidad:</span>
       </div>
     </div>
-
     <div class="row pb-4">
-
       <div class="col">
         <input type="text" class="form-control" form="shippingForm" placeholder="mm" name="userCardMonth" id="userCardMonth" pattern="^(?:0?[0-9]|1[0-2])" required>
       </div>
-
       <div class="col">
         <input type="text" class="form-control" form="shippingForm" placeholder="aaaa" name="userCardYear" id="userCardYear" pattern="^[20]+[0-9]{2}" required>
       </div>
-
     </div>
-
     <div class="row">
       
       <div class="col">
         <span>Código de seguridad:</span>
       </div>
-
     </div>
-
     <div class="row pb-4">
       
       <div class="col">
         <input type="text" class="form-control" form="shippingForm" placeholder="000" name="userCardCode" id="userCardCode" pattern="^[0-9]{3}" required>
       </div>
-
     </div>
-
     <div class="row pb-4">
       
       <div class="col">
         <button class="my-4 btn-block customButton" form="shippingForm" type="submit" id="creditButton">Continuar</button>
       </div>
-
     </div>
 	`;
 	creditCardContainer.innerHTML = htmlContentToAppend;
@@ -233,35 +113,28 @@ function transferPayment(event){
       <div class="col">
         <span>Nombre o razón social:</span>
       </div>
-
     </div>
-
     <div class="row pb-4">
       <div class="col">
         <input type="text" class="form-control" placeholder="Ej: María Gómez" form="shippingForm" name="userBusinessName" id="userBusinessName" required>
       </div>
     </div>
-
     <div class="row">
       
       <div class="col">
         <span>Cuenta de origen:</span>
       </div>
-
     </div>
-
     <div class="row pb-4">
       <div class="col">
         <input type="text" class="form-control" placeholder="0000 0000 0000 0000 0000" form="shippingForm" pattern="(^[A-Z a-z]{2}|[0-9]{2})+[0-9]{22}" name="userSourceAccount" id="userSourceAccount" required>
       </div>
     </div>
-
     <div class="row pb-4">
       
       <div class="col">
         <button class="my-4 btn-block customButton" form="shippingForm" type="submit" id="transferButton">Continuar</button>
       </div>
-
     </div>
 	`;
 	transferContainer.innerHTML = htmlContentToAppend;
@@ -297,7 +170,131 @@ document.addEventListener("DOMContentLoaded", function(e){
 	.then(function(response){
 		if (response.status = "ok"){
 			cartData = response.data.articles;
-			getCartItems(cartData);
+			
+			let subTotal = 0;
+			let productCartContainer = document.getElementById("cartInfo");
+			for (let i = 0; i < cartData.length; i++) {
+				let productCart = cartData[i];
+
+				productCartImage = productCart.src;
+				productCartName = productCart.name;
+				productCartCount = productCart.count;
+				productCartCost = productCart.unitCost;
+				productCartCurrency = productCart.currency;
+				productCartQuantityCost = productCart.count*productCart.unitCost;
+
+				if (productCartCurrency === "USD") {
+					productCartQuantityCostUSD = productCartQuantityCost*USD;
+				}else{
+					productCartQuantityCostUSD = productCart.count*productCart.unitCost;
+				}
+
+				subTotal += productCartQuantityCostUSD;
+				subTotalFormat = new Intl.NumberFormat("de-DE").format(subTotal);
+				total = subTotal*shippingTax;
+				totalFormat = new Intl.NumberFormat("de-DE").format(total);
+
+				productCartContainer.innerHTML += `
+		        <tr id="productcard`+i+`">
+		          <td class="align-middle">
+		            <img id="productImage`+i+`" src="`+productCartImage+`" class="cartImage">
+		            <span name="purchasedProduct" id="productName`+i+`">`+productCartName+`</span>
+		          </td>
+		          <td class="align-middle">
+		          	<input type="number" name="quantityPurchasedProduct" class="form-control" value="`+productCartCount+`" id="productCount`+i+`" onchange="selectedItems(event)"></input>
+		          </td>
+		          <td class="align-middle">
+		            <span id="productCost`+i+`">`+productCartCost+` </span>
+		            <span id="productCurrency`+i+`">`+productCartCurrency+`</span>
+		          </td>
+		          <td class="align-middle">
+		            <span id="productCartQuantityCost`+i+`">`+productCartQuantityCost+` </span>
+		            <span id="productQuantityCurrency`+i+`">`+productCartCurrency+`</span>
+		          </td>
+		          <td>
+					<button type="button" class="close" aria-label="Close" id="deleteButton`+i+`">
+					  <span aria-hidden="true">×</span>
+					</button>
+		          </td>
+		        </tr>
+				`;
+				document.getElementById("subtotal").innerHTML = `Subtotal: $ `+subTotalFormat;
+				document.getElementById("total").innerHTML = `Precio Total: $ `+totalFormat;	
+			}
+			for (let i = 0; i < cartData.length; i++) {
+		
+				let deleteButton = document.getElementById('deleteButton'+i);
+				deleteButton.addEventListener('click', function(){
+					cartData.splice(i, 1);
+				
+
+					if (cartData[0].currency === "USD") {
+						productCartQuantityCostUSD = cartData[0].count*cartData[0].unitCost*USD;
+					}else{
+						productCartQuantityCostUSD = cartData[0].count*cartData[0].unitCost;
+					}
+
+					subTotal = productCartQuantityCostUSD;
+					subTotalFormat = new Intl.NumberFormat("de-DE").format(subTotal);
+					total = subTotal*shippingTax;
+					totalFormat = new Intl.NumberFormat("de-DE").format(total);
+
+					productCartContainer.innerHTML = `
+			        <tr id="productcard`+i+`">
+			          <td class="align-middle">
+			            <img id="productImage`+i+`" src="`+cartData[0].src+`" class="cartImage">
+			            <span name="purchasedProduct" id="productName`+i+`">`+cartData[0].name+`</span>
+			          </td>
+			          <td class="align-middle">
+			          	<input type="number" name="quantityPurchasedProduct" class="form-control" value="`+cartData[0].count+`" id="productCount`+i+`" onchange="selectedItems(event)"></input>
+			          </td>
+			          <td class="align-middle">
+			            <span id="productCost`+i+`">`+cartData[0].unitCost+` </span>
+			            <span id="productCurrency`+i+`">`+cartData[0].currency+`</span>
+			          </td>
+			          <td class="align-middle">
+			            <span id="productCartQuantityCost`+i+`">`+cartData[0].count*cartData[0].unitCost+` </span>
+			            <span id="productQuantityCurrency`+i+`">`+cartData[0].currency+`</span>
+			          </td>
+			          <td>
+						<button type="button" class="close" aria-label="Close" id="deleteButton`+i+`">
+						  <span aria-hidden="true">×</span>
+						</button>
+			          </td>
+			        </tr>
+					`;
+					document.getElementById("subtotal").innerHTML = `Subtotal: $ `+subTotalFormat;
+					document.getElementById("total").innerHTML = `Precio Total: $ `+totalFormat;
+				});
+                for (let i = 0; i < cartData.length; i++) {
+                    const element = cartData[i];
+                    document.getElementById("productCount" + i).addEventListener("change", function () {
+                        var cantidadnueva = document.getElementById("productCount" + i).value;
+                        
+                        for (let j = 0; j < cartData.length; j++) {
+                            const article = cartData[j]
+                            if (article.currency === "USD") {
+                                productCartQuantityCostUSD = article.unitCost * document.getElementById("productCount" + j).value * USD;
+                            } else {
+                                productCartQuantityCostUSD = article.unitCost * document.getElementById("productCount" + j).value;
+                            }
+                        }
+
+
+						subTotal = productCartQuantityCostUSD;
+						subTotalFormat = new Intl.NumberFormat("de-DE").format(subTotal);
+						total = subTotal*shippingTax;
+						totalFormat = new Intl.NumberFormat("de-DE").format(total);
+
+						document.getElementById("subtotal").innerHTML = `Subtotal: $ `+subTotalFormat;
+						document.getElementById("total").innerHTML = `Precio Total: $ `+totalFormat;
+						document.getElementById("productCartQuantityCost"+i).innerHTML = productCartQuantityCost;
+
+                    })
+                }
+
+			}
+
 		}
 	});
 });
