@@ -4,150 +4,49 @@
 let selectedProducts = [];
 let shippingTax = 1.15;
 let USD = 40;
-let subTotal = 0;
 
-function getCartItems(){
-	let productCartContainer = document.getElementById("cartInfo");
+/*
+function selectedItems(event){
+	event.preventDefault();
+	let subTotal = 0;
 	for (let i = 0; i < cartData.length; i++) {
 		let productCart = cartData[i];
-
-		productCartImage = productCart.src;
-		productCartName = productCart.name;
-		productCartCount = productCart.count;
-		productCartCost = productCart.unitCost;
+		
+		selectedProducts[i] = document.getElementById("productCount"+i).value;
+		productCartQuantityCost = selectedProducts[i]*productCart.unitCost;
 		productCartCurrency = productCart.currency;
-		productCartQuantityCost = productCart.count*productCart.unitCost;
-
 		if (productCartCurrency === "USD") {
 			productCartQuantityCostUSD = productCartQuantityCost*USD;
 		}else{
-			productCartQuantityCostUSD = productCart.count*productCart.unitCost;
+			productCartQuantityCostUSD = productCartQuantityCost;
 		}
-
 		subTotal += productCartQuantityCostUSD;
 		subTotalFormat = new Intl.NumberFormat("de-DE").format(subTotal);
 		total = subTotal*shippingTax;
 		totalFormat = new Intl.NumberFormat("de-DE").format(total);
-
-		productCartContainer.innerHTML += `
-	    <tr id="productcard`+i+`">
-	      <td class="align-middle">
-	        <img id="productImage`+i+`" src="`+productCartImage+`" class="cartImage">
-	        <span name="purchasedProduct" id="productName`+i+`">`+productCartName+`</span>
-	      </td>
-	      <td class="align-middle">
-	      	<input type="number" name="quantityPurchasedProduct" class="form-control" value="`+productCartCount+`" id="productCount`+i+`" onchange="selectedItems(event)"></input>
-	      </td>
-	      <td class="align-middle">
-	        <span id="productCost`+i+`">`+productCartCost+` </span>
-	        <span id="productCurrency`+i+`">`+productCartCurrency+`</span>
-	      </td>
-	      <td class="align-middle">
-	        <span id="productCartQuantityCost`+i+`">`+productCartQuantityCost+` </span>
-	        <span id="productQuantityCurrency`+i+`">`+productCartCurrency+`</span>
-	      </td>
-	      <td>
-			<button type="button" class="close" aria-label="Close" id="deleteButton`+i+`">
-			  <span aria-hidden="true">×</span>
-			</button>
-	      </td>
-	    </tr>
-		`;
-		document.getElementById("subtotal").innerHTML = `Subtotal: $ `+subTotalFormat;
-		document.getElementById("total").innerHTML = `Precio Total: $ `+totalFormat;	
-	}
-
-	for (let i = 0; i < cartData.length; i++) {
-
-		let deleteButton = document.getElementById('deleteButton'+i);
-		deleteButton.addEventListener('click', function(){
-			cartData.splice(i, 1);
-		
-
-			if (cartData[0].currency === "USD") {
-				productCartQuantityCostUSD = cartData[0].count*cartData[0].unitCost*USD;
-			}else{
-				productCartQuantityCostUSD = cartData[0].count*cartData[0].unitCost;
-			}
-
-			subTotal = productCartQuantityCostUSD;
-			subTotalFormat = new Intl.NumberFormat("de-DE").format(subTotal);
-			total = subTotal*shippingTax;
-			totalFormat = new Intl.NumberFormat("de-DE").format(total);
-
-			productCartContainer.innerHTML = `
-	        <tr id="productcard`+i+`">
-	          <td class="align-middle">
-	            <img id="productImage`+i+`" src="`+cartData[0].src+`" class="cartImage">
-	            <span name="purchasedProduct" id="productName`+i+`">`+cartData[0].name+`</span>
-	          </td>
-	          <td class="align-middle">
-	          	<input type="number" name="quantityPurchasedProduct" class="form-control" value="`+cartData[0].count+`" id="productCount`+i+`" onchange="selectedItems(event)"></input>
-	          </td>
-	          <td class="align-middle">
-	            <span id="productCost`+i+`">`+cartData[0].unitCost+` </span>
-	            <span id="productCurrency`+i+`">`+cartData[0].currency+`</span>
-	          </td>
-	          <td class="align-middle">
-	            <span id="productCartQuantityCost`+i+`">`+cartData[0].count*cartData[0].unitCost+` </span>
-	            <span id="productQuantityCurrency`+i+`">`+cartData[0].currency+`</span>
-	          </td>
-	          <td>
-				<button type="button" class="close" aria-label="Close" id="deleteButton`+i+`">
-				  <span aria-hidden="true">×</span>
-				</button>
-	          </td>
-	        </tr>
-			`;
-			document.getElementById("subtotal").innerHTML = `Subtotal: $ `+subTotalFormat;
-			document.getElementById("total").innerHTML = `Precio Total: $ `+totalFormat;
-		});
-	}
-}
-
-function selectedItems(event){
-    var productCartQuantityCostUSD1 = 0
-    var productCartQuantityCostUSD2 = 0
-    for (let i = 0; i < cartData.length; i++) {
-        let selectedArticles = cartData[i];
-        
-        var selectedArticle = document.getElementById("productCount" + i).value;
-			let productCartQuantityCost = selectedArticle*selectedArticles.unitCost;
-        for (let i = 0; i < cartData.length; i++) {
-            let article = cartData[i];
-            
-            if (article.currency === "USD") {
-                productCartQuantityCostUSD1 = article.unitCost * document.getElementById("productCount" + i).value * 40;
-            } else {
-                productCartQuantityCostUSD2 = article.unitCost * document.getElementById("productCount" + i).value;
-            }
-            subTotal = productCartQuantityCostUSD1 + productCartQuantityCostUSD2;
-        }
-        subTotalFormat = new Intl.NumberFormat("de-DE").format(subTotal);
-        total = subTotal*shippingTax;
-        totalFormat = new Intl.NumberFormat("de-DE").format(total);
 		document.getElementById("subtotal").innerHTML = `Subtotal: $ `+subTotalFormat;
 		document.getElementById("total").innerHTML = `Precio Total: $ `+totalFormat;
 		document.getElementById("productCartQuantityCost"+i).innerHTML = productCartQuantityCost;
-    }
+	}
+	
 }
-
+*/
 function premiumTax(event){
 	event.preventDefault();
 	shippingTax = 1.15;
-	selectedItems(event);
+	//selectedItems(event);
 }
 
 function expressTax(event){
 	event.preventDefault();
 	shippingTax = 1.07;
-	selectedItems(event);
+	//selectedItems(event);
 }
 
 function standardTax(event){
 	event.preventDefault();
 	shippingTax = 1.05;
-	selectedItems(event);
+	//selectedItems(event);
 }
 
 function creditCardPayment(event){
@@ -267,9 +166,164 @@ document.addEventListener("DOMContentLoaded", function(e){
 	getJSONData('https://japdevdep.github.io/ecommerce-api/cart/654.json')
 	.then(function(response){
 		if (response.status = "ok"){
+
 			cartData = response.data.articles;
 			
-			getCartItems();
+			let subTotal = 0;
+		    let productCartQuantityCostUSD1 = 0
+		    let productCartQuantityCostUSD2 = 0
+			let productCartContainer = document.getElementById("cartInfo");
+			
+			for (let i = 0; i < cartData.length; i++) {
+				let productCart = cartData[i];
+
+				productCartImage = productCart.src;
+				productCartName = productCart.name;
+				productCartCount = productCart.count;
+				productCartCost = productCart.unitCost;
+				productCartCurrency = productCart.currency;
+				productCartQuantityCost = productCart.count*productCart.unitCost;
+
+				if (productCartCurrency === "USD") {
+					productCartQuantityCostUSD = productCartQuantityCost*USD;
+				}else{
+					productCartQuantityCostUSD = productCart.count*productCart.unitCost;
+				}
+
+				subTotal += productCartQuantityCostUSD;
+				subTotalFormat = new Intl.NumberFormat("de-DE").format(subTotal);
+				total = subTotal*shippingTax;
+				totalFormat = new Intl.NumberFormat("de-DE").format(total);
+
+				productCartContainer.innerHTML += `
+			    <tr id="productcard`+i+`">
+			      <td class="align-middle">
+			        <img id="productImage`+i+`" src="`+productCartImage+`" class="cartImage">
+			        <span name="purchasedProduct" id="productName`+i+`">`+productCartName+`</span>
+			      </td>
+			      <td class="align-middle">
+			      	<input type="number" name="quantityPurchasedProduct" class="form-control" value="`+productCartCount+`" id="productCount`+i+`"></input>
+			      </td>
+			      <td class="align-middle">
+			        <span id="productCost`+i+`">`+productCartCost+` </span>
+			        <span id="productCurrency`+i+`">`+productCartCurrency+`</span>
+			      </td>
+			      <td class="align-middle">
+			        <span id="productCartQuantityCost`+i+`">`+productCartQuantityCost+` </span>
+			        <span id="productQuantityCurrency`+i+`">`+productCartCurrency+`</span>
+			      </td>
+			      <td>
+					<button type="button" class="close" aria-label="Close" id="deleteButton`+i+`">
+					  <span aria-hidden="true">×</span>
+					</button>
+			      </td>
+			    </tr>
+				`;
+				document.getElementById("subtotal").innerHTML = `Subtotal: $ `+subTotalFormat;
+				document.getElementById("total").innerHTML = `Precio Total: $ `+totalFormat;	
+			}
+
+			for (let i = 0; i < cartData.length; i++) {
+
+				let deleteButton = document.getElementById('deleteButton'+i);
+				deleteButton.addEventListener('click', function(){
+					cartData.splice(i, 1);
+				
+
+					if (cartData[0].currency === "USD") {
+						productCartQuantityCostUSD = cartData[0].count*cartData[0].unitCost*USD;
+						subTotal = productCartQuantityCostUSD;
+						subTotalFormat = new Intl.NumberFormat("de-DE").format(subTotal);
+						total = subTotal*shippingTax;
+						totalFormat = new Intl.NumberFormat("de-DE").format(total);
+					}else{
+						productCartQuantityCostUSD = cartData[0].count*cartData[0].unitCost;
+						subTotal = productCartQuantityCostUSD;
+						subTotalFormat = new Intl.NumberFormat("de-DE").format(subTotal);
+						total = subTotal*shippingTax;
+						totalFormat = new Intl.NumberFormat("de-DE").format(total);
+					}
+
+					productCartContainer.innerHTML = `
+			        <tr id="productcard`+0+`">
+			          <td class="align-middle">
+			            <img id="productImage`+0+`" src="`+cartData[0].src+`" class="cartImage">
+			            <span name="purchasedProduct" id="productName`+0+`">`+cartData[0].name+`</span>
+			          </td>
+			          <td class="align-middle">
+			          	<input type="number" name="quantityPurchasedProduct" class="form-control" value="`+cartData[0].count+`" id="productCount`+0+`"></input>
+			          </td>
+			          <td class="align-middle">
+			            <span id="productCost`+0+`">`+cartData[0].unitCost+` </span>
+			            <span id="productCurrency`+0+`">`+cartData[0].currency+`</span>
+			          </td>
+			          <td class="align-middle">
+			            <span id="productCartQuantityCost`+0+`">`+cartData[0].count*cartData[0].unitCost+` </span>
+			            <span id="productQuantityCurrency`+0+`">`+cartData[0].currency+`</span>
+			          </td>
+			          <td>
+						<button type="button" class="close" aria-label="Close" id="deleteButton`+0+`">
+						  <span aria-hidden="true">×</span>
+						</button>
+			          </td>
+			        </tr>
+					`;
+
+
+			    for (let i = 0; i < cartData.length; i++) {
+			        let selectedArticles = cartData[i];
+
+			        document.getElementById("productCount" + i).addEventListener("change", function () {
+			        	
+				        var selectedArticle = document.getElementById("productCount" + i).value;
+							let productCartQuantityCost = selectedArticle*selectedArticles.unitCost;
+				        for (let i = 0; i < cartData.length; i++) {
+				            let article = cartData[i];
+				            
+				            if (article.currency === "USD") {
+				                productCartQuantityCostUSD1 = article.unitCost * document.getElementById("productCount" + i).value * 40;
+				            } else {
+				                productCartQuantityCostUSD2 = article.unitCost * document.getElementById("productCount" + i).value;
+				            }
+				            subTotal = productCartQuantityCostUSD1 + productCartQuantityCostUSD2;
+				        }
+				        subTotalFormat = new Intl.NumberFormat("de-DE").format(subTotal);
+				        total = subTotal*shippingTax;
+				        totalFormat = new Intl.NumberFormat("de-DE").format(total);
+						document.getElementById("subtotal").innerHTML = `Subtotal: $ `+subTotalFormat;
+						document.getElementById("total").innerHTML = `Precio Total: $ `+totalFormat;
+						document.getElementById("productCartQuantityCost"+i).innerHTML = productCartQuantityCost;
+					});
+			    }
+					document.getElementById("subtotal").innerHTML = `Subtotal: $ `+subTotalFormat;
+					document.getElementById("total").innerHTML = `Precio Total: $ `+totalFormat;
+				});
+
+			}
+
+		    for (let i = 0; i < cartData.length; i++) {
+		        let selectedArticles = cartData[i];
+		        document.getElementById("productCount" + i).addEventListener("change", function () {
+			        var selectedArticle = document.getElementById("productCount" + i).value;
+						let productCartQuantityCost = selectedArticle*selectedArticles.unitCost;
+			        for (let i = 0; i < cartData.length; i++) {
+			            let article = cartData[i];
+			            
+			            if (article.currency === "USD") {
+			                productCartQuantityCostUSD1 = article.unitCost * document.getElementById("productCount" + i).value * 40;
+			            } else {
+			                productCartQuantityCostUSD2 = article.unitCost * document.getElementById("productCount" + i).value;
+			            }
+			            subTotal = productCartQuantityCostUSD1 + productCartQuantityCostUSD2;
+			        }
+			        subTotalFormat = new Intl.NumberFormat("de-DE").format(subTotal);
+			        total = subTotal*shippingTax;
+			        totalFormat = new Intl.NumberFormat("de-DE").format(total);
+					document.getElementById("subtotal").innerHTML = `Subtotal: $ `+subTotalFormat;
+					document.getElementById("total").innerHTML = `Precio Total: $ `+totalFormat;
+					document.getElementById("productCartQuantityCost"+i).innerHTML = productCartQuantityCost;
+				});
+		    }
 		}
 	});
 });
