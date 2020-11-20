@@ -4,9 +4,9 @@
 let selectedProducts = [];
 let shippingTax = 1.15;
 let USD = 40;
+let subTotal = 0;
 
 function getCartItems(){
-	let subTotal = 0;
 	let productCartContainer = document.getElementById("cartInfo");
 	for (let i = 0; i < cartData.length; i++) {
 		let productCart = cartData[i];

@@ -45,26 +45,26 @@ function showCategoriesList(){
             ((maxCount == undefined) || (maxCount != undefined && parseInt(category.productCount) <= maxCount))){
 
             htmlContentToAppend += `
-            <a href="category-info.html" class="list-group-item list-group-item-action">
-                <div class="row">
-                    <div class="col-3">
-                        <img src="` + category.imgSrc + `" alt="` + category.description + `" class="img-thumbnail">
-                    </div>
-                    <div class="col">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h4 class="mb-1">`+ category.name +`</h4>
-                            <small class="text-muted">` + category.productCount + ` artículos</small>
+            <div class="col-md-4 col-sm-6 col-12 p-3">
+                <div class="productList pb-3">
+                    <a class="categoryUrl" href="category-info.html">
+                        <div>
+                          <img src="` + category.imgSrc + `" class="card-img-top" alt="` +category.description + `">
+                          <div class="card-body">
+                            <h5 class="card-title">`+ category.name +`</h5>
+                            <small class="text-muted">` + category.productCount + ` USD</small>
+                            <p class="card-text" style="height: 3.6em; text-overflow: -o-ellipsis-lastline;">`+ category.description +`</p>
+                          </div>
                         </div>
-                        <p class="mb-1">` + category.description + `</p>
-                    </div>
+                    </a>
                 </div>
-            </a>
+            </div>
             `
         }
     }
 
     document.getElementById("cat-list-container").innerHTML = htmlContentToAppend;
-    //Se sacó este código del bucle
+
 }
 
 function sortAndShowCategories(sortCriteria, categoriesArray){

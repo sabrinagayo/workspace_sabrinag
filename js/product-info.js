@@ -94,7 +94,7 @@ function getRelatedProducts(array, relatedProducts){
 	            	<h4 class="card-title">`+relatedProduct.name+`</h4>
 	            	<p class="card-text">`+relatedProduct.description+`</p>
 	            	<small class="text-muted">` + relatedProduct.cost + ` USD</small>
-	            	<a href="product-info.html?nombre=` + relatedProduct.name + `" class="btn btn-info btn-block">Ver producto</a>
+	            	<a href="product-info.html?nombre=` + relatedProduct.name + `" class="btn customButton my-3 btn-block">Ver producto</a>
 	          	</div>
 	        </div>
         </div>

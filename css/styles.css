@@ -209,6 +209,10 @@ select:focus {
 .customButton:active {
   box-shadow:inset 0 0.6em 2em -0.3em rgba(0,0,0,0.15),inset 0 0 0em 0.05em rgba(255,255,255,0.12);
 }
+.customButton:hover {
+  background: #dddddd;
+  color: black;
+}
 
 .myProfileAvatar{
   width: 25%;
@@ -267,5 +271,41 @@ select:focus {
 .image-preview-image{
   display: none;
   width: 100%;
+}
+/*PRODUCTS.HTML*/
+.productList{
+  background-color: white;
+  box-shadow: 5px 5px 15px #aaaaaa;
+}
+
+#productoUrl, .categoryUrl{
+  text-decoration: none;
+  color: black;
+}
+
+#productoUrl:hover , .categoryUrl:hover{
+  text-decoration: none;
+  color: grey;
+}
+.limpiarFiltro{
+  text-decoration: none;
+  color: pink;
+  background: white;
+  border: none;
+  color: black;
+  border-radius: 5px;
+  padding: 10px;
+  box-shadow:inset 0 -0.6em 1em -0.35em rgba(0,0,0,0.17),inset 0 0.6em 2em -0.3em rgba(255,255,255,0.15),inset 0 0 0em 0.05em rgba(255,255,255,0.12);
+}
+
+.limpiarFiltro:hover{
+  text-decoration: none;
+  color: grey;
+}
+
+.searchTool{
+  background: black;
+  color: #dddddd;
+  box-shadow:inset 0 -0.6em 1em -0.35em rgba(0,0,0,0.17),inset 0 0.6em 2em -0.3em rgba(255,255,255,0.15),inset 0 0 0em 0.05em rgba(255,255,255,0.12);
 }
 /*CSS PERSONALIZADO*/

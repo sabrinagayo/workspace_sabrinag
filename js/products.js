@@ -62,17 +62,19 @@ var showProductsList = function(){
             ((maxCost == undefined) || (maxCost != undefined && parseInt(product.cost) <= maxCost))){
 
         htmlContentToAppend += `
-        <div class="col-md-4 col-sm-6 col-12 py-3">
-            <a href="product-info.html?nombre=` + product.name + `" id="productoUrl">
-                <div class="card">
-                  <img src="` + product.imgSrc + `" class="card-img-top" alt="` + product.description + `">
-                  <div class="card-body">
-                    <h5 class="card-title">`+ product.name +`</h5>
-                    <small class="text-muted">` + product.cost + ` USD</small>
-                    <p class="card-text" style="height: 3.6em; text-overflow: -o-ellipsis-lastline;">`+ product.description +`</p>
-                  </div>
-                </div>
-            </a>
+        <div class="col-md-4 col-sm-6 col-12 p-3">
+            <div class="productList pb-3">
+                <a href="product-info.html?nombre=` + product.name + `" id="productoUrl">
+                    <div>
+                      <img src="` + product.imgSrc + `" class="card-img-top" alt="` + product.description + `">
+                      <div class="card-body">
+                        <h5 class="card-title">`+ product.name +`</h5>
+                        <small class="text-muted">` + product.cost + ` USD</small>
+                        <p class="card-text" style="height: 3.6em; text-overflow: -o-ellipsis-lastline;">`+ product.description +`</p>
+                      </div>
+                    </div>
+                </a>
+            </div>
         </div>
         `
         }
