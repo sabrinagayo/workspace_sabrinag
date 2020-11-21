@@ -7,7 +7,7 @@
 }
 
 .jumbotron {
-  height: 50vh;
+  height: 60vh;
   padding: 5em inherit;
   margin-bottom: 0;
   background-color: #53C0FB;
@@ -141,8 +141,35 @@ a.custom-card:hover {
   color: orange;
 }
 /*CSS PERSONALIZADO*/
+.site-header{
+  background-color: black;
+  color: white;
+}
+
+.navButton{
+  padding: 10px;
+}
+
+.navButton:hover {
+  border: none;
+  border-radius: 5px;
+  background: #dddddd;
+  text-decoration: none;
+  color: black;
+}
+
 #pintarNombreUsuario {
   color: white;
+}
+
+.productText1{
+  height: 3.6em;
+  text-overflow: -o-ellipsis-lastline;
+}
+
+.productText2{
+  height: 5.6em;
+  text-overflow: -o-ellipsis-lastline;
 }
 
 .input-group.md-form.form-sm.form-2 input {
@@ -276,6 +303,7 @@ select:focus {
 .productList{
   background-color: white;
   box-shadow: 5px 5px 15px #aaaaaa;
+  border: none;
 }
 
 #productoUrl, .categoryUrl{

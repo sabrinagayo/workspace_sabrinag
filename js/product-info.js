@@ -75,7 +75,7 @@ function getProduct(){
 	productName.innerHTML = urlName;
 	productCategory.innerHTML = infoObj.category;
 	productDescription.innerHTML = infoObj.description;
-	productPrice.innerHTML = infoObj.cost;
+	productPrice.innerHTML += infoObj.cost;
 	carouselImage(infoObj.images);
 }
 
@@ -84,18 +84,20 @@ function getRelatedProducts(array, relatedProducts){
 	for (let i = 0; i < relatedProducts.length; i++) {
 		let relatedProduct = array[relatedProducts[i]];
 		htmlContentToAppend += `
-		<div class="col-lg-6 card">
-	        <a href="product-info.html?nombre=` + relatedProduct.name + `" class="text-dark productInfoLink">
-	          	<div class="view overlay">
-	            	<img class="card-img-top" src="`+relatedProduct.imgSrc+`"
-	              alt="` + relatedProduct.description + `">
-	          	</div>
-	          	<div class="card-body">
-	            	<h4 class="card-title">`+relatedProduct.name+`</h4>
-	            	<p class="card-text">`+relatedProduct.description+`</p>
-	            	<small class="text-muted">` + relatedProduct.cost + ` USD</small>
-	            	<a href="product-info.html?nombre=` + relatedProduct.name + `" class="btn customButton my-3 btn-block">Ver producto</a>
-	          	</div>
+		<div class="col-lg-6">
+			<div class="productList">
+		        <a href="product-info.html?nombre=` + relatedProduct.name + `" class="text-dark productInfoLink">
+		          	<div class="view overlay">
+		            	<img class="card-img-top" src="`+relatedProduct.imgSrc+`"
+		              alt="` + relatedProduct.description + `">
+		          	</div>
+		          	<div class="card-body">
+		            	<h4 class="card-title">`+relatedProduct.name+`</h4>
+		            	<small class="text-muted">` + relatedProduct.cost + ` USD</small>
+		            	<p class="card-text productText2">`+relatedProduct.description+`</p>
+		            	<a href="product-info.html?nombre=` + relatedProduct.name + `" class="btn customButton my-4 btn-block">Ver producto</a>
+		          	</div>
+		        </a>
 	        </div>
         </div>
 		`;

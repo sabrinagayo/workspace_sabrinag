@@ -15,12 +15,12 @@
     <link href="css/styles.css" rel="stylesheet">
   </head>
   <body>
-    <nav class="site-header sticky-top py-1 bg-dark">
+    <nav class="site-header sticky-top py-1">
       <div class="container d-flex flex-column flex-md-row justify-content-between" id="navegador">
-        <a class="py-2 d-none d-md-inline-block" href="index.html">Inicio</a>
-        <a class="py-2 d-none d-md-inline-block" href="categories.html">Categorías</a>
-        <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
-        <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
+        <a class="py-2 d-none navButton d-md-inline-block" href="index.html">Inicio</a>
+        <a class="py-2 d-none navButton d-md-inline-block" href="categories.html">Categorías</a>
+        <a class="py-2 d-none navButton d-md-inline-block" href="products.html">Productos</a>
+        <a class="py-2 d-none navButton d-md-inline-block" href="sell.html">Vender</a>
       </div>
     </nav>
     <main role="main" class="pb-5">
@@ -32,13 +32,13 @@
           <div class="row">
               <div class="col text-right">
                   <div class="btn-group btn-group-toggle mb-4" data-toggle="buttons">
-                      <label class="btn btn-light active" id="sortAsc" >
+                      <label class="btn btn-light customButton active" id="sortAsc" >
                           <input type="radio" name="options" autocomplete="off" checked>A-Z
                       </label>
-                      <label class="btn btn-light" id="sortDesc" >
+                      <label class="btn btn-light customButton" id="sortDesc" >
                           <input type="radio" name="options" autocomplete="off">Z-A
                       </label>
-                      <label class="btn btn-light" id="sortByCount" >
+                      <label class="btn btn-light customButton" id="sortByCount" >
                           <input type="radio" name="options" autocomplete="off"><i class="fas fa-sort-amount-down mr-1"></i>Cant.
                       </label>
                   </div>
@@ -59,8 +59,8 @@
                   </div>
                   <div class="col-3 p-0">
                     <div class="btn-group" role="group">
-                      <button class="btn btn-light btn-block" id="rangeFilterCount">Filtrar</button>
-                      <button class="btn btn-link btn-sm" id="clearRangeFilter">Limpiar</button>
+                      <button class="btn btn-light btn-block customButton" id="rangeFilterCount">Filtrar</button>
+                      <button class="btn btn-link btn-sm limpiarFiltro" id="clearRangeFilter">Limpiar</button>
                     </div>
                   </div>
                 </div>

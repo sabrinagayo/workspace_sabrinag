@@ -1,21 +1,38 @@
 var category = {};
 
 function showImagesGallery(array){
-
-    let htmlContentToAppend = "";
-
-    for(let i = 0; i < array.length; i++){
-        let imageSrc = array[i];
-
-        htmlContentToAppend += `
-        <div class="col-lg-3 col-md-4 col-6">
-            <div class="d-block mb-4 h-100">
-                <img class="img-fluid img-thumbnail" src="` + imageSrc + `" alt="">
+    htmlContentToAppend = "";
+    htmlContentToAppend2 = "";
+    htmlContentToAppend3 = "";
+    for(i = 0; i < array.length; i++){
+        var image = array[i];
+        var activeImage = array[0];
+        
+        htmlContentToAppend2 = `
+        <img class="border w-100" src="`+image+`">
+        `;
+        if (i>0) {
+            htmlContentToAppend3 = `
+            <li data-target="#carousel-example-1z" data-slide-to="`+i+`"></li>
+            `;
+            htmlContentToAppend = `
+            <div class="carousel-item">
+              <img class="d-block w-100" src="`+image+`" alt="Second slide">
             </div>
-        </div>
-        `
-
-        document.getElementById("productImagesGallery").innerHTML = htmlContentToAppend;
+            `;
+        }else{
+            htmlContentToAppend3 = `
+            <li data-target="#carousel-example-1z" data-slide-to="`+i+`" class="active"></li>
+            `;
+            htmlContentToAppend = `
+            <div class="carousel-item active">
+              <img class="d-block w-100" src="`+activeImage+`" alt="Second slide">
+            </div>
+            `;
+        }
+        document.getElementById("liImages").innerHTML += htmlContentToAppend3;
+        document.getElementById("slide-container").innerHTML += htmlContentToAppend;
+        document.getElementById("image-container").innerHTML += htmlContentToAppend2;
     }
 }
 
@@ -34,9 +51,9 @@ document.addEventListener("DOMContentLoaded", function(e){
             let productCriteriaHTML = document.getElementById("productCriteria");
         
             categoryNameHTML.innerHTML = category.name;
-            categoryDescriptionHTML.innerHTML = category.description;
-            productCountHTML.innerHTML = category.productCount;
-            productCriteriaHTML.innerHTML = category.productCriteria;
+            categoryDescriptionHTML.innerHTML += category.description;
+            productCountHTML.innerHTML += category.productCount;
+            productCriteriaHTML.innerHTML += category.productCriteria;
 
             //Muestro las imagenes en forma de galería
             showImagesGallery(category.images);

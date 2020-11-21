@@ -70,7 +70,7 @@ var showProductsList = function(){
                       <div class="card-body">
                         <h5 class="card-title">`+ product.name +`</h5>
                         <small class="text-muted">` + product.cost + ` USD</small>
-                        <p class="card-text" style="height: 3.6em; text-overflow: -o-ellipsis-lastline;">`+ product.description +`</p>
+                        <p class="card-text productText1">`+ product.description +`</p>
                       </div>
                     </div>
                 </a>
@@ -110,7 +110,7 @@ var searchProducts = function(){
         if(name.indexOf(searchText)!== -1 || description.indexOf(searchText) !== -1){
             
             searchResult.innerHTML += `
-            <a class="row list-group-item-action mt-4 border-light rounded" href="product-info.html?nombre=` + product.name + `" id="productoUrl">
+            <a class="row p-3 list-group-item-action productList mt-4 rounded" href="product-info.html?nombre=` + product.name + `" id="productoUrl">
                 <div class="col-3 pl-0">
                     <img src="` + product.imgSrc + `" alt="` + product.description + `" class="img-fluid rounded">
                 </div>

@@ -16,12 +16,12 @@
 </head>
 
 <body>
-  <nav class="site-header sticky-top py-1 bg-dark">
+  <nav class="site-header sticky-top py-1">
     <div class="container d-flex flex-column flex-md-row justify-content-between" id="navegador">
-      <a class="py-2 d-none d-md-inline-block" href="index.html">Inicio</a>
-      <a class="py-2 d-none d-md-inline-block" href="categories.html">Categorías</a>
-      <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
-      <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
+      <a class="py-2 d-none navButton d-md-inline-block" href="index.html">Inicio</a>
+      <a class="py-2 d-none navButton d-md-inline-block" href="categories.html">Categorías</a>
+      <a class="py-2 d-none navButton d-md-inline-block" href="products.html">Productos</a>
+      <a class="py-2 d-none navButton d-md-inline-block" href="sell.html">Vender</a>
     </div>
   </nav>
   <div class="container p-5">
@@ -57,7 +57,7 @@
         <h1 class="text-justify pb-1" id="nombreProducto"></h1>
         <small class="text-justify pb-4" id="categoriaProducto"></small>
         <p class="text-justify pb-3" id="descripcionProducto"></p>
-        <p class="text-center pb-3" id="precioProducto"></p>
+        <p class="text-center pb-3" id="precioProducto">USD </p>
         <button class="btn btn-block customButton" type="submit" name="comprar">Añadir al carrito</button>
       </div>
     </div>
@@ -87,12 +87,10 @@
             <button class="btn customButton" type="submit">Publicar</button>
           </div>
         </form>
+        <div id="newComment"></div>
         <div id="comentariosJson"></div>
       </div>
-      <div class="col-lg-6"></div>
-      <div class="col-lg-6" id="newComment">
-        
-      </div>
+    </div>
   </div>
   <footer class="text-muted">
     <div class="container">

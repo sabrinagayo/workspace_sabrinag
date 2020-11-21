@@ -44,7 +44,7 @@ var getUserName = function(){
   var userName = sessionStorage.getItem('userName');
   document.getElementById("navegador").innerHTML += 
   `
-  <button class="btn dropdown-toggle btn-outline-secondary text-white" type="button" data-toggle="dropdown"
+  <button class="btn dropdown-toggle navButton p-0 px-2 btn-outline-secondary text-white" type="button" data-toggle="dropdown"
     aria-haspopup="true" aria-expanded="false" >` + userName + `</button>
 
   <div class="dropdown-menu">
